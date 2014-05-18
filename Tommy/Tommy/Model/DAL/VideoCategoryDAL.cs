@@ -9,6 +9,10 @@ namespace Tommy.Model.DAL
 {
     public class VideoCategoryDAL : DALBase
     {
+        /// <summary>
+        /// Returnerar en lista av video kategorier
+        /// </summary>
+        /// <returns>En lista med referenser till video kategorier</returns>
         public IEnumerable<VideoCategory> GetVideoCategory()
         {
             using (SqlConnection connection = CreateConnection())
@@ -45,54 +49,5 @@ namespace Tommy.Model.DAL
                 }
             }
         }
-
-        public VideoCategory GetCategoryByVideoID(int videoid)
-        {
-            // Skapar ett anslutningsobjekt.
-            using (var connection = CreateConnection())
-            {
-                try
-                {
-                    // exekveras specifierad lagrad procedur.
-                    var cmd = new SqlCommand("appSchema.GetCategoryByVideoID", connection);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@videoid", videoid);
-
-                    VideoCategory videocategorys = new VideoCategory();
-
-                    // Öppnar anslutningen till databasen.
-                    connection.Open();
-
-                    // SqlDataReader-objekt och returnerar en referens till objektet.
-                    using (var reader = cmd.ExecuteReader())
-                    {
-
-                        var videocategoryidIndex = reader.GetOrdinal("videocategoryid");
-                        var videocategorynameIndex = reader.GetOrdinal("videocategoryname");
-
-
-                        if (reader.Read())
-                        {
-
-                            return (new VideoCategory
-                            {
-                                videocategoryid = reader.GetInt32(videocategoryidIndex),
-                                videocategoryname = reader.GetString(videocategorynameIndex)
-
-                            });
-                        }
-                    }
-                    return null;
-                }
-                catch
-                {
-                    throw new ApplicationException("An error occured in the data access layer.");
-                }
-            }
-        }
-
-
-
     }
 }

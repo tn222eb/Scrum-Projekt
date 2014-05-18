@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Tommy.Model.DAL;
@@ -39,9 +40,9 @@ namespace Tommy.Model
             get { return _videoDAL ?? (_videoDAL = new VideoDAL()); }
         }
 
-        public void DeleteImageData(string imagename)
+        public void DeleteImageData(int imageid)
         {
-            ImageDAL.DeleteImageData(imagename);
+            ImageDAL.DeleteImageData(imageid);
         }
 
         public void InsertImageData(string imagename, string userid, int imagecategoryid, string videotitle)
@@ -49,19 +50,9 @@ namespace Tommy.Model
             ImageDAL.InsertImageData(imagename, userid, imagecategoryid, videotitle);
         }
 
-        public List<Image> GetUserImages(string userid)
+        public void InsertUserData(string userid, string name)
         {
-            return ImageDAL.GetUserImages(userid);
-        }
-
-        public List<Image> GetCategoryImages(int imagecategoryid)
-        {
-            return ImageDAL.GetCategoryImages(imagecategoryid);
-        }
-
-        public void InsertUserData(string access_token, string userid, string name)
-        {
-            FacebookDAL.InsertUserData(access_token, userid, name);
+            FacebookDAL.InsertUserData(userid, name);
         }
 
         public string GetUserData(string userid)
@@ -69,14 +60,28 @@ namespace Tommy.Model
             return FacebookDAL.GetUserData(userid);
         }
 
-        public IEnumerable<ImageCategory> GetImageCategory()
+        public IEnumerable<ImageCategory> GetImageCategory(bool refresh = false)
         {
-            return ImageCategoryDAL.GetImageCategory();
+            var imagecategorys = HttpContext.Current.Cache["ImageCategory"] as IEnumerable<ImageCategory>;
+            if (imagecategorys == null || refresh)
+            {
+                imagecategorys = ImageCategoryDAL.GetImageCategory();
+                HttpContext.Current.Cache.Insert("ImageCategory", imagecategorys, null, DateTime.Now.AddMinutes(10), TimeSpan.Zero);
+            }
+
+            return imagecategorys;
         }
 
-        public IEnumerable<VideoCategory> GetVideoCategory()
+        public IEnumerable<VideoCategory> GetVideoCategory(bool refresh = false)
         {
-            return VideoCategoryDAL.GetVideoCategory();
+            var videocategorys = HttpContext.Current.Cache["VideoCategory"] as IEnumerable<VideoCategory>;
+            if (videocategorys == null || refresh)
+            {
+                videocategorys = VideoCategoryDAL.GetVideoCategory();
+                HttpContext.Current.Cache.Insert("VideoCategory", videocategorys, null, DateTime.Now.AddMinutes(10), TimeSpan.Zero);
+            }
+
+            return videocategorys;
         }
 
         public void InsertVideoData(string videoname, string userid, int videocategoryid, string videotitle)
@@ -84,19 +89,9 @@ namespace Tommy.Model
             VideoDAL.InsertVideoData(videoname, userid, videocategoryid, videotitle);
         }
 
-        public void DeleteVideoData(string videoname)
+        public void DeleteVideoData(int videoid)
         {
-            VideoDAL.DeleteVideoData(videoname);
-        }
-
-        public List<Video> GetUserVideos(string userid)
-        {
-            return VideoDAL.GetUserVideos(userid);
-        }
-
-        public List<Video> GetCategoryVideos(int videocategoryid)
-        {
-            return VideoDAL.GetCategoryVideos(videocategoryid);
+            VideoDAL.DeleteVideoData(videoid);
         }
 
         public static IEnumerable<Image> GetImagesPageWise(int maximumRows, int startRowIndex, out int totalRowCount)
@@ -133,14 +128,41 @@ namespace Tommy.Model
         {
             return VideoDAL.GetVideoDataByID(videoid);
         }
-        public VideoCategory GetCategoryByVideoID(int videoid)
-        {
-            return VideoCategoryDAL.GetCategoryByVideoID(videoid);
-        }
 
         public void UpdateVideo(Video video, int videocategoryid)
         {
+            ICollection<ValidationResult> validationResults;
+            if (!video.Validate(out validationResults))
+            {
+                var ex = new ValidationException("Objektet klarade inte valideringen.");
+                ex.Data.Add("ValidationResults", validationResults);
+                throw ex;
+            }
+
             VideoDAL.UpdateVideo(video, videocategoryid);
+        }
+
+        public void UpdateImage(Image image, int imagecategoryid)
+        {
+            ICollection<ValidationResult> validationResults;
+            if (!image.Validate(out validationResults))
+            {
+                var ex = new ValidationException("Objektet klarade inte valideringen.");
+                ex.Data.Add("ValidationResults", validationResults);
+                throw ex;
+            }
+
+            ImageDAL.UpdateImage(image, imagecategoryid);
+        }
+
+        public Image GetImageDataByID(int imageid)
+        {
+            return ImageDAL.GetImageDataByID(imageid);
+        }
+
+        public List<Image> GetLatestImages()
+        {
+            return ImageDAL.GetLatestImages();
         }
     }
 }

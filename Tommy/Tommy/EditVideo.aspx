@@ -1,33 +1,34 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EditVideo.aspx.cs" Inherits="Tommy.EditVideo" %>
+﻿<%@ Page Title="Redigera videoklipp" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EditVideo.aspx.cs" Inherits="Tommy.EditVideo" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-          <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="validation-summary-errors" />
-    <asp:ValidationSummary ID="ValidationSummary2" runat="server" CssClass="validation-summary-errors" ValidationGroup="EditValidation" ShowModelStateErrors="false" />
-       <asp:FormView ID="EditVideoFormView" runat="server"
+    <asp:ValidationSummary ID="ValidationSummary" runat="server" CssClass="editvalidation" />
+    <asp:FormView ID="EditVideoFormView" runat="server"
         ItemType="Tommy.Model.Video"
         DataKeyNames="VideoID"
         DefaultMode="Edit"
         RenderOuterTable="false"
         SelectMethod="EditVideoFormView_GetItem"
-        UpdateMethod="EditVideoFormView_UpdateItem" >
+        UpdateMethod="EditVideoFormView_UpdateItem">
         <EditItemTemplate>
             <div class="editor-field">
-                <asp:TextBox ID="Header" runat="server" Text='<%# BindItem.videotitle %>' MaxLength="255" />
-                <asp:RequiredFieldValidator ID="HeaderRequiredFieldValidator" runat="server" ErrorMessage="Rubrik måste anges." ControlToValidate="Header" Display="None" ValidationGroup="EditValidation"></asp:RequiredFieldValidator>
+                <label for="VideoTitleTextBox" id="VideoTitleLabel" runat="server">Video rubrik</label>
+                <asp:TextBox ID="VideoTitleTextBox" runat="server" Text='<%# BindItem.videotitle %>' MaxLength="255" />
+                <asp:RequiredFieldValidator ID="VideoTitleRequiredFieldValidator" runat="server" ErrorMessage="Rubrik måste anges." ControlToValidate="VideoTitleTextBox" Display="None"></asp:RequiredFieldValidator>
             </div>
 
             <div>
-                         <asp:DropDownList ID="VideoCategoryDropDownList" runat="server"
-        SelectMethod="VideoCategoryDropDownList_GetData"
-        DataTextField="videocategoryname"
-        DataValueField="videocategoryid"
-                             ItemType="Tommy.Model.VideoCategory"
-                             Enabled="true"
-                              SelectedValue='<%# Item.videocategoryid %>'/>
+                <asp:DropDownList ID="VideoCategoryDropDownList" runat="server"
+                    SelectMethod="VideoCategoryDropDownList_GetData"
+                    DataTextField="videocategoryname"
+                    DataValueField="videocategoryid"
+                    ItemType="Tommy.Model.VideoCategory"
+                    Enabled="true"
+                    SelectedValue='<%# Item.videocategoryid %>' CssClass="dplvideomargin" />
             </div>
 
-            <div id="button-div">
-                <asp:LinkButton ID="LinkButton1" runat="server" Text="Spara" CommandName="Update" ValidationGroup="EditValidation" CssClass="button-style" />
+            <div>
+                <asp:LinkButton ID="UpdateButton" runat="server" Text="Spara" CommandName="Update" ValidationGroup="EditValidation" CssClass="cssbutton" />
+                <asp:HyperLink ID="CancelButton" runat="server" NavigateUrl='<%$ RouteUrl:routename=uploadvideo %>' Text="Avbryt" CssClass="cssbutton" />
             </div>
         </EditItemTemplate>
     </asp:FormView>

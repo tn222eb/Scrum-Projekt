@@ -22,6 +22,13 @@ namespace Tommy
             get { return _service ?? (_service = new Service()); }
         }
 
+        private FacebookUserDAL _facebookUserDAL;
+
+        private FacebookUserDAL FaceBookUserDAL
+        {
+            get { return _facebookUserDAL ?? (_facebookUserDAL = new FacebookUserDAL()); }
+        }
+
         public string Code
         {
             get { return ((SiteMaster)this.Master).Code; }
@@ -39,6 +46,29 @@ namespace Tommy
             }
         }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Message != null)
+            {
+                SuccessLabel.Text = Message;
+                SuccessLabel.Visible = true;
+                Session.Remove("Message");
+            }
+
+            if (Code == null)
+            {
+                LoginStatus.Text = "Du måste vara inloggad";
+                LoginStatus.CssClass = "fail";
+                FileUpload.Visible = false;
+                UploadButton.Visible = false;
+                VideoCategoryDropDownList.Visible = false;
+                VideoListView.Visible = false;
+                VideoTitleTextBox.Visible = false;
+                HeaderLabel.Visible = false;
+                InfoPanel.Visible = false;
+            }
+        }
+
         public IEnumerable<VideoCategory> VideoCategoryDropDownList_GetData()
         {
             return Service.GetVideoCategory();
@@ -52,138 +82,99 @@ namespace Tommy
             return File.Exists(Path.Combine(PhysicalUploadVideoPath, name));
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        public bool IsValidVideo(FileUpload fileupload)
         {
-            if (Message != null)
-            {
-                SuccessLabel.Visible = true;
-                SuccessLabel.Text = Message;
-                Session.Remove("Message");
-            }
-
-            if (Code == null)
-            {
-                LoginStatus.Text = "Du måste vara inloggad";
-                LoginStatus.CssClass = "fail";
-                FileUpload.Visible = false;
-                UploadButton.Visible = false;
-                DeleteButton.Visible = false;
-                VideoCategoryDropDownList.Visible = false;
-                VideoListView.Visible = false;
-                VideoTitleTextBox.Visible = false;
-                HeaderLabel.Visible = false;
-            }
+            return fileupload.PostedFile.ContentType == "video/mp4" && fileupload.HasFile;
         }
 
-        protected void btnUpload_Click(object sender, EventArgs e)
+        public bool IsValidContentLength(int contentlength)
         {
-            if (FileUpload.HasFile && VideoTitleTextBox.Text != String.Empty)
+            return contentlength < 20971520;
+        }
+
+        public string GetFaceBookUserID()
+        {
+            string data = FaceBookConnect.Fetch(Code, "me");
+            FacebookUser user = new JavaScriptSerializer().Deserialize<FacebookUser>(data);
+            return user.Id;
+        }
+
+        protected void UploadButton_Click(object sender, EventArgs e)
+        {
+            if (IsValid)
             {
-                if ((FileUpload.PostedFile.ContentType == "video/mp4"))
+                if (FileUpload.FileName.Length <= 128)
                 {
-                    if (Convert.ToInt64(FileUpload.PostedFile.ContentLength) < 1000000000000)
+                    if (VideoTitleTextBox.Text == String.Empty)
                     {
-                        var fileName = FileUpload.FileName;
-
-                        if (VideoExists(FileUpload.FileName))
-                        {
-                            var videoName = Path.GetFileNameWithoutExtension(fileName);
-                            var imageExtension = Path.GetExtension(fileName);
-                            int i = 1;
-
-                            while (VideoExists(fileName))
-                            {
-                                fileName = String.Format("{0}({1}){2}", videoName, i++, imageExtension);
-                            }
-                        }
-
-                        FileUpload.SaveAs(Path.Combine(PhysicalUploadVideoPath, fileName));
-
-                        LabelStatus.Text = "Filen " + fileName + " har laddats upp.";
-                        string data = FaceBookConnect.Fetch(Code, "me");
-                        FacebookUser user = new JavaScriptSerializer().Deserialize<FacebookUser>(data);
-
-                        var categoryIDs = 0;
-
-                        foreach (ListItem bm in VideoCategoryDropDownList.Items)
-                        {
-                            if (bm.Selected)
-                            {
-                                categoryIDs = int.Parse(bm.Value);
-
-                            }
-                        }
-
-                        var textboxContent = VideoTitleTextBox.Text;
-                        Service.InsertVideoData(fileName, user.Id, categoryIDs, textboxContent);
-                        Message = "Bilden har laddats upp.";
-                        Response.RedirectToRoute("uploadvideo");
+                        ModelState.AddModelError(String.Empty, "Det måste finnas en video rubrik.");
                     }
                     else
                     {
-                        LabelStatus.Text = "Filen måste vara mindre 1 GB.";
-                        LabelStatus.CssClass = "fail";
+                        if (IsValidVideo(FileUpload))
+                        {
+                            if (!IsValidContentLength((FileUpload.PostedFile.ContentLength)))
+                            {
+                                ModelState.AddModelError(String.Empty, "Filen måste vara mindre 20 mb.");
+                            }
+                            else
+                            {
+                                string fileName = FileUpload.FileName;
+                                string userId = GetFaceBookUserID();
+                                string videoTitle = VideoTitleTextBox.Text;
+                                var categoryID = 0;
+
+                                if (VideoExists(FileUpload.FileName))
+                                {
+                                    var videoName = Path.GetFileNameWithoutExtension(fileName);
+                                    var imageExtension = Path.GetExtension(fileName);
+                                    int i = 1;
+
+                                    while (VideoExists(fileName))
+                                    {
+                                        fileName = String.Format("{0}({1}){2}", videoName, i++, imageExtension);
+                                    }
+                                }
+
+                                foreach (ListItem item in VideoCategoryDropDownList.Items)
+                                {
+                                    if (item.Selected)
+                                    {
+                                        categoryID = int.Parse(item.Value);
+                                    }
+                                }
+
+                                FileUpload.SaveAs(Path.Combine(PhysicalUploadVideoPath, fileName));
+                                Service.InsertVideoData(fileName, userId, categoryID, videoTitle);
+
+                                Message = fileName + " har laddats upp.";
+                                Response.RedirectToRoute("uploadvideo");
+                            }
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(String.Empty, "Fil måste ha valts och vara av formatet mp4.");
+                        }
                     }
                 }
-
                 else
                 {
-                    LabelStatus.Text = "Filen måste vara av formaten mp4 eller flv";
-                    LabelStatus.CssClass = "fail";
+                    ModelState.AddModelError(String.Empty, "Filnamnet är för stort och måste vara mindre än 124 tecken.");
                 }
-            }
-            else
-            {
-                LabelStatus.Text = "Ingen fil har valts.";
-                LabelStatus.CssClass = "fail";
-            }
-        }
-   
-        protected void btnDelete_Click(object sender, EventArgs e)
-        {
-            bool deletionOccurs = false;
-
-            foreach (ListViewItem item in VideoListView.Items)
-            {
-                CheckBox checkbox = item.FindControl("cbDelete") as CheckBox;
-
-                if (checkbox.Checked)
-                {
-                    string fromPhotosToExtension = checkbox.Attributes["special"];
-                    string correctFileName = fromPhotosToExtension.Replace("Videos//", "");
-                    string fromRootToHome = Path.Combine(AppDomain.CurrentDomain.GetData("APPBASE").ToString());
-                    string fileToDelete = Path.Combine(fromRootToHome, fromPhotosToExtension);
-                    File.Delete(fileToDelete);
-                    Service.DeleteVideoData(correctFileName);
-
-                    Message = "Videoklipp har tagits bort.";
-                    deletionOccurs = true;
-                }
-            }
-
-            if (deletionOccurs)
-            {
-                Response.RedirectToRoute("uploadvideo");
-            }
-            else
-            {
-                LabelStatus.Text = "Ingen fil har valts.";
-                LabelStatus.CssClass = "fail";
             }
         }
 
         public IEnumerable<Tommy.Model.Video> VideoListView_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
-            string data = FaceBookConnect.Fetch(Code, "me");
-            FacebookUser user = new JavaScriptSerializer().Deserialize<FacebookUser>(data);
-            FacebookUserDAL facebookUserDAL = new FacebookUserDAL();
-            string adminId = facebookUserDAL.GetAdminData();
+            string userId = GetFaceBookUserID();
+            string adminId = FaceBookUserDAL.GetAdminData();
 
-            if (user.Id == adminId)
+            if (userId == adminId)
             {
                 return Service.GetVideosPageWise(maximumRows, startRowIndex, out totalRowCount);
             }
-            return Service.GetMyVideosPageWiseByID(maximumRows, startRowIndex, out totalRowCount, user.Id);
+
+            return Service.GetMyVideosPageWiseByID(maximumRows, startRowIndex, out totalRowCount, userId);
         }
     }
 }

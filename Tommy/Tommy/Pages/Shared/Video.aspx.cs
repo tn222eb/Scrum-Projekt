@@ -22,5 +22,26 @@ namespace Tommy.Pages.Shared
         {
             return Service.GetVideosPageWise(maximumRows, startRowIndex, out totalRowCount);
         }
+
+        protected void WindowButton_Command(object sender, CommandEventArgs e)
+        {
+            ListViewDataItem one = (ListViewDataItem)(sender as Control).NamingContainer;
+            Label Window = (Label)one.FindControl("Window");
+            Window.Visible = true;
+
+            ListViewDataItem two = (ListViewDataItem)(sender as Control).NamingContainer;
+            Label Close = (Label)two.FindControl("Close");
+            Close.Visible = true;
+        }
+
+
+
+        protected void CommentCloseButton_Command(object sender, CommandEventArgs e)
+        {
+            ListViewDataItem two = (ListViewDataItem)(sender as Control).NamingContainer;
+            Label Close = (Label)two.FindControl("Close");
+
+            Close.Visible = false;
+        }
     }
 }

@@ -11,7 +11,6 @@ namespace Tommy
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.MapPageRoute("imagemotor", "bilder/motor", "~/Pages/CategoryPages/Image/Motor.aspx");
-            routes.MapPageRoute("imagenaket", "bilder/naket", "~/Pages/CategoryPages/Image/Naket.aspx");
             routes.MapPageRoute("imagerandom", "bilder/random", "~/Pages/CategoryPages/Image/Random.aspx");
             routes.MapPageRoute("imageroligt", "bilder/roligt", "~/Pages/CategoryPages/Image/Roligt.aspx");
             routes.MapPageRoute("imagesport", "bilder/sport", "~/Pages/CategoryPages/Image/Sport.aspx");
@@ -25,6 +24,9 @@ namespace Tommy
             routes.MapPageRoute("uploadvideo", "laddaupp/videoklipp", "~/UploadVideo.aspx");
             routes.MapPageRoute("uploadimage", "laddaupp/bilder", "~/UploadImage.aspx");
             routes.MapPageRoute("editvideo", "laddaupp/videoklipp/redigera/{id}", "~/EditVideo.aspx");
+            routes.MapPageRoute("editimage", "laddaupp/bilder/redigera/{id}", "~/EditImage.aspx");
+            routes.MapPageRoute("deletevideo", "laddaupp/videoklipp/radera/{id}", "~/DeleteVideo.aspx");
+            routes.MapPageRoute("deleteimage", "laddaupp/bilder/radera/{id}", "~/DeleteImage.aspx");
             routes.MapPageRoute("default", "", "~/Default.aspx");
 
         }

@@ -31,7 +31,7 @@ namespace Tommy
             }
             catch (Exception)
             {
-                ModelState.AddModelError(String.Empty, "Fel inträffade då Bilannonsen hämtades vid redigering.");
+                ModelState.AddModelError(String.Empty, "Fel har uppstått då videoklippet ej hittas");
                 return null;
             }
         }
@@ -43,39 +43,36 @@ namespace Tommy
 
         public void EditVideoFormView_UpdateItem(Video video)
         {
-            var videocategoryID = 0;
-
-            DropDownList dropdownList = (DropDownList)EditVideoFormView.FindControl("VideoCategoryDropDownList");
-            foreach (ListItem item in dropdownList.Items)
+            if (IsValid)
             {
-                if (item.Selected)
+                try
                 {
-                    videocategoryID = int.Parse(item.Value);
+                    if (TryUpdateModel(video))
+                    {
+                        var categoryID = 0;
 
+                        DropDownList dropdownList = (DropDownList)EditVideoFormView.FindControl("VideoCategoryDropDownList");
+                        foreach (ListItem item in dropdownList.Items)
+                        {
+                            if (item.Selected)
+                            {
+                                categoryID = int.Parse(item.Value);
+
+                            }
+                        } 
+
+                        Service.UpdateVideo(video, categoryID);
+                        Page.SetTempData("Message", video.videotitle + " har uppdaterats.");
+                        Response.RedirectToRoute("uploadvideo");
+                        Context.ApplicationInstance.CompleteRequest();
+                    }
                 }
-            }
-            try
-            {
-                //if (video == null)
-                //{
-                //    // The item wasn't found
-                //    ModelState.AddModelError(String.Empty, String.Format("CarAd with id {0} was not found", video));
-                //    return;
-                //}
-
-                if (TryUpdateModel(video))
+                catch (Exception)
                 {
-                    Service.UpdateVideo(video, videocategoryID);
-                    Page.SetTempData("Message", "Bilannonsen har uppdaterats.");
-                    Response.RedirectToRoute("uploadvideo");
-                    Context.ApplicationInstance.CompleteRequest();
+                    ModelState.AddModelError(String.Empty, "Fel har uppstått då videoklippet skulle redigeras.");
                 }
+
             }
-            catch (Exception)
-            {
-                ModelState.AddModelError(String.Empty, "");
-            }
-      
         }
     }
 }

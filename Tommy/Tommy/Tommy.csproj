@@ -187,9 +187,15 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Default.aspx" />
+    <Content Include="DeleteImage.aspx" />
+    <Content Include="DeleteVideo.aspx" />
+    <Content Include="demo\dummy-images\captions.jpg" />
+    <Content Include="demo\dummy-images\coffee.jpg" />
+    <Content Include="demo\dummy-images\features.jpg" />
+    <Content Include="demo\dummy-images\overflow.jpg" />
+    <Content Include="EditImage.aspx" />
     <Content Include="EditVideo.aspx" />
     <Content Include="Pages\CategoryPages\Image\Motor.aspx" />
-    <Content Include="Pages\CategoryPages\Image\Naket.aspx" />
     <Content Include="Pages\CategoryPages\Image\Random.aspx" />
     <Content Include="Pages\CategoryPages\Image\Roligt.aspx" />
     <Content Include="Pages\CategoryPages\Image\Sport.aspx" />
@@ -198,6 +204,7 @@
     <Content Include="FlowPlayer\flowplayer-3.2.16.swf" />
     <Content Include="FlowPlayer\flowplayer.controls-3.2.15.swf" />
     <Content Include="FlowPlayer\flowplayer.pseudostreaming-3.2.12.swf" />
+    <Content Include="Pages\Shared\Error.aspx" />
     <Content Include="Pages\Shared\Image.aspx" />
     <Content Include="Images\Facebook\login.png" />
     <Content Include="Images\Facebook\logout.png" />
@@ -248,6 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Infrastructure\PageExtensions.cs" />
+    <Compile Include="App_Infrastructure\ValidationExtensions.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -257,6 +265,27 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteImage.aspx.cs">
+      <DependentUpon>DeleteImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeleteImage.aspx.designer.cs">
+      <DependentUpon>DeleteImage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteVideo.aspx.cs">
+      <DependentUpon>DeleteVideo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeleteVideo.aspx.designer.cs">
+      <DependentUpon>DeleteVideo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditImage.aspx.cs">
+      <DependentUpon>EditImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditImage.aspx.designer.cs">
+      <DependentUpon>EditImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditVideo.aspx.cs">
       <DependentUpon>EditVideo.aspx</DependentUpon>
@@ -272,13 +301,6 @@
     </Compile>
     <Compile Include="Pages\CategoryPages\Image\Motor.aspx.designer.cs">
       <DependentUpon>Motor.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\CategoryPages\Image\Naket.aspx.cs">
-      <DependentUpon>Naket.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\CategoryPages\Image\Naket.aspx.designer.cs">
-      <DependentUpon>Naket.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\CategoryPages\Image\Random.aspx.cs">
       <DependentUpon>Random.aspx</DependentUpon>
@@ -310,6 +332,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shared\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Shared\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Shared\Image.aspx.cs">
       <DependentUpon>Image.aspx</DependentUpon>

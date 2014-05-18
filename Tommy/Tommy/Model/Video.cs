@@ -13,5 +13,6 @@ namespace Tommy.Model
         public int videocategoryid { get; set; }
         public string videotitle { get; set; }
         public DateTime createddate { get; set; }
+      
     }
 }

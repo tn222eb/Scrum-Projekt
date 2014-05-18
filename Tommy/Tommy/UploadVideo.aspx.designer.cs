@@ -13,13 +13,13 @@ namespace Tommy {
     public partial class UploadVideo {
         
         /// <summary>
-        /// LoginStatus control.
+        /// InfoPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LoginStatus;
+        protected global::System.Web.UI.WebControls.Panel InfoPanel;
         
         /// <summary>
         /// HeaderLabel control.
@@ -38,15 +38,6 @@ namespace Tommy {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox VideoTitleTextBox;
-        
-        /// <summary>
-        /// HeaderRequiredFieldValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator HeaderRequiredFieldValidator;
         
         /// <summary>
         /// VideoCategoryDropDownList control.
@@ -76,13 +67,13 @@ namespace Tommy {
         protected global::System.Web.UI.WebControls.Button UploadButton;
         
         /// <summary>
-        /// DeleteButton control.
+        /// LoginStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteButton;
+        protected global::System.Web.UI.WebControls.Label LoginStatus;
         
         /// <summary>
         /// SuccessLabel control.
@@ -94,22 +85,40 @@ namespace Tommy {
         protected global::System.Web.UI.WebControls.Label SuccessLabel;
         
         /// <summary>
-        /// ValidationSummary2 control.
+        /// VideoTitleRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator VideoTitleRequiredFieldValidator;
         
         /// <summary>
-        /// LabelStatus control.
+        /// FileUploadRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelStatus;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator FileUploadRequiredFieldValidator;
+        
+        /// <summary>
+        /// RegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator;
+        
+        /// <summary>
+        /// ValidationSummary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
         
         /// <summary>
         /// VideoListView control.

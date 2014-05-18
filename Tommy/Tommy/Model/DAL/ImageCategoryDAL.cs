@@ -9,6 +9,10 @@ namespace Tommy.Model.DAL
 {
     public class ImageCategoryDAL : DALBase
     {
+        /// <summary>
+        /// Returnerar en lista av bild kategorier
+        /// </summary>
+        /// <returns>En lista med referenser till bild kategorier</returns>
         public IEnumerable<ImageCategory> GetImageCategory()
         {
             using (SqlConnection connection = CreateConnection())

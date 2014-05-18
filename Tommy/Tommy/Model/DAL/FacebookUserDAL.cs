@@ -9,16 +9,22 @@ namespace Tommy.Model.DAL
 {
     public class FacebookUserDAL : DALBase
     {
-        public void InsertUserData(string access_token, string userid, string name)
+        /// <summary>
+        /// Lagrar användarinformation i databasen
+        /// </summary>
+        /// <param name="access_token"></param>
+        /// <param name="userid"></param>
+        /// <param name="name"></param>
+        public void InsertUserData(string userid, string name)
         {
             using (SqlConnection connection = CreateConnection())
             {
                 try
+
                 {
                     SqlCommand cmd = new SqlCommand("appSchema.InsertUserData", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@access_token", SqlDbType.VarChar, 255).Value = access_token;
                     cmd.Parameters.Add("@name", SqlDbType.NVarChar, 50).Value = name;
                     cmd.Parameters.Add("@userid", SqlDbType.VarChar, 100).Value = userid;
 
@@ -33,6 +39,11 @@ namespace Tommy.Model.DAL
             }
         }
 
+        /// <summary>
+        /// Hämtar användardata från databasen
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns>Returnerar vilken användare</returns>
         public string GetUserData(string userid)
         {
             using (SqlConnection connection = CreateConnection())
@@ -63,6 +74,10 @@ namespace Tommy.Model.DAL
             }
         }
 
+        /// <summary>
+        /// Hämtar hårdkodade adminid från databasen
+        /// </summary>
+        /// <returns>Returnerar adminid</returns>
         public string GetAdminData()
         {
             using (SqlConnection connection = CreateConnection())
@@ -92,8 +107,5 @@ namespace Tommy.Model.DAL
                 }
             }
         }
-
-
-
     }
 }

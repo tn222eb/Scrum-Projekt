@@ -16,27 +16,31 @@ namespace Tommy.Pages.Shared
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
         }
-
-        protected void imgUserPhoto_Command(object sender, CommandEventArgs e)
-        {
-            StringBuilder script = new StringBuilder();
-
-            script.Append("<script type='text/javascript'>");
-            script.Append("var viewer = new PhotoViewer();");
-            script.Append("viewer.setBorderWidth(0);");
-            script.Append("viewer.disableToolbar();");
-            script.Append("viewer.add('" + e.CommandArgument + "');");
-            script.Append("viewer.show(0);");
-            script.Append("</script>");
-
-            ClientScript.RegisterStartupScript(GetType(), "viewer", script.ToString());
-        }
-
 
         public IEnumerable<Tommy.Model.Image> ImageListView_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
             return Service.GetImagesPageWise(maximumRows, startRowIndex, out totalRowCount);
+        }
+
+        protected void WindowButton_Command(object sender, CommandEventArgs e)
+        {
+
+            ListViewDataItem one = (ListViewDataItem)(sender as Control).NamingContainer;
+            Label Window = (Label)one.FindControl("Window");
+            Window.Visible = true;
+
+            ListViewDataItem two = (ListViewDataItem)(sender as Control).NamingContainer;
+            Label Close = (Label)two.FindControl("Close");
+            Close.Visible = true;
+        }
+
+        protected void CommentCloseButton_Command(object sender, CommandEventArgs e)
+        {
+            ListViewDataItem two = (ListViewDataItem)(sender as Control).NamingContainer;
+            Label Close = (Label)two.FindControl("Close");
+            Close.Visible = false;
         }
     }
 }

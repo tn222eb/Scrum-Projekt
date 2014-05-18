@@ -10,6 +10,13 @@ namespace Tommy.Model.DAL
 {
     public class VideoDAL : DALBase
     {
+        /// <summary>
+        /// Lägger in ett videoklipp i databasen
+        /// </summary>
+        /// <param name="videoname"></param>
+        /// <param name="userid"></param>
+        /// <param name="videocategoryid"></param>
+        /// <param name="videotitle"></param>
         public void InsertVideoData(string videoname, string userid, int videocategoryid, string videotitle)
         {
             using (SqlConnection connection = CreateConnection())
@@ -35,7 +42,11 @@ namespace Tommy.Model.DAL
             }
         }
 
-        public void DeleteVideoData(string videoname)
+        /// <summary>
+        /// Tar bort ett videoklipp från databasen
+        /// </summary>
+        /// <param name="videoname"></param>
+        public void DeleteVideoData(int videoid)
         {
             using (SqlConnection connection = CreateConnection())
             {
@@ -44,7 +55,7 @@ namespace Tommy.Model.DAL
                     SqlCommand cmd = new SqlCommand("appSchema.DeleteVideoData", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@videoname", SqlDbType.NVarChar, 128).Value = videoname;
+                    cmd.Parameters.Add("@videoid", SqlDbType.Int, 4).Value = videoid;
 
                     connection.Open();
 
@@ -57,78 +68,14 @@ namespace Tommy.Model.DAL
             }
         }
 
-        public List<Video> GetUserVideos(string userid)
-        {
-            using (SqlConnection connection = CreateConnection())
-            {
-                try
-                {
-                    var videos = new List<Video>(100);
-
-                    var cmd = new SqlCommand("appSchema.GetUserVideos", connection);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@userid", userid);
-                    connection.Open();
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        var videonameIndex = reader.GetOrdinal("videoname");
-
-                        while (reader.Read())
-                        {
-                            videos.Add(new Video
-                            {
-                                videoname = reader.GetString(videonameIndex)
-                            });
-                        }
-                    }
-                    videos.TrimExcess();
-
-                    return videos;
-                }
-                catch (Exception)
-                {
-                    throw new ApplicationException("An error occured in the data access layer.");
-                }
-            }
-        }
-
-        public List<Video> GetCategoryVideos(int videocategoryid)
-        {
-            using (SqlConnection connection = CreateConnection())
-            {
-                try
-                {
-                    var categoryVideos = new List<Video>(100);
-
-                    var cmd = new SqlCommand("appSchema.GetCategoryVideos", connection);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@videocategoryid", videocategoryid);
-                    connection.Open();
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        var videonameIndex = reader.GetOrdinal("videoname");
-
-                        while (reader.Read())
-                        {
-                            categoryVideos.Add(new Video
-                            {
-                                videoname = reader.GetString(videonameIndex)
-                            });
-                        }
-                    }
-                    categoryVideos.TrimExcess();
-
-                    return categoryVideos;
-                }
-                catch (Exception)
-                {
-                    throw new ApplicationException("An error occured in the data access layer.");
-                }
-            }
-        }
-
+        /// <summary>
+        /// Hämtar en lista av en användares videoklipp
+        /// </summary>
+        /// <param name="maximumRows"></param>
+        /// <param name="startRowIndex"></param>
+        /// <param name="totalRowCount"></param>
+        /// <param name="userid"></param>
+        /// <returns>En lista med referenser till användares videoklipps namn</returns>
         public static IEnumerable<Video> GetMyVideosPageWiseByID(int maximumRows, int startRowIndex, out int totalRowCount, string userid)
         {
             using (var conn = CreateConnection())
@@ -159,6 +106,7 @@ namespace Tommy.Model.DAL
                         var videotitleIndex = reader.GetOrdinal("videotitle");
                         var createddateIndex = reader.GetOrdinal("createddate");
 
+
                         while (reader.Read())
                         {
                             videos.Add(new Video
@@ -169,6 +117,7 @@ namespace Tommy.Model.DAL
                                 videocategoryid = reader.GetInt32(videocategoryIndex),
                                 videotitle= reader.GetString(videotitleIndex),
                                 createddate = reader.GetDateTime(createddateIndex)
+
                             });
                         }
                     }
@@ -183,6 +132,14 @@ namespace Tommy.Model.DAL
             }
         }
 
+        /// <summary>
+        /// Hämtar en lista av en kategoris videoklipp
+        /// </summary>
+        /// <param name="maximumRows"></param>
+        /// <param name="startRowIndex"></param>
+        /// <param name="totalRowCount"></param>
+        /// <param name="videocategoryid"></param>
+        /// <returns>En lista med referenser till kategoriers videoklipps namn</returns>
         public static IEnumerable<Video> GetVideosPageWiseByID(int maximumRows, int startRowIndex, out int totalRowCount, int videocategoryid)
         {
             using (var conn = CreateConnection())
@@ -213,6 +170,7 @@ namespace Tommy.Model.DAL
                         var videotitleIndex = reader.GetOrdinal("videotitle");
                         var createddateIndex = reader.GetOrdinal("createddate");
 
+
                         while (reader.Read())
                         {
                             videos.Add(new Video
@@ -223,6 +181,7 @@ namespace Tommy.Model.DAL
                                 videocategoryid = reader.GetInt32(videocategoryIndex),
                                 videotitle= reader.GetString(videotitleIndex),
                                 createddate = reader.GetDateTime(createddateIndex)
+
 
                             });
                         }
@@ -238,6 +197,13 @@ namespace Tommy.Model.DAL
             }
         }
 
+        /// <summary>
+        /// Hämtar en lista av alla videoklipp
+        /// </summary>
+        /// <param name="maximumRows"></param>
+        /// <param name="startRowIndex"></param>
+        /// <param name="totalRowCount"></param>
+        /// <returns>Returnerar en lista med alla videoklipps namn</returns>
         public static IEnumerable<Video> GetVideosPageWise(int maximumRows, int startRowIndex, out int totalRowCount)
         {
             using (var conn = CreateConnection())
@@ -267,6 +233,7 @@ namespace Tommy.Model.DAL
                         var videotitleIndex = reader.GetOrdinal("videotitle");
                         var createddateIndex = reader.GetOrdinal("createddate");
 
+
                         while (reader.Read())
                         {
                             videos.Add(new Video
@@ -277,6 +244,7 @@ namespace Tommy.Model.DAL
                                 videocategoryid = reader.GetInt32(videocategoryIndex),
                                 videotitle = reader.GetString(videotitleIndex),
                                 createddate = reader.GetDateTime(createddateIndex)
+
                             });
                         }
                     }
@@ -291,6 +259,11 @@ namespace Tommy.Model.DAL
             }
         }
 
+        /// <summary>
+        /// Hämtar videoklipp data genom videoid
+        /// </summary>
+        /// <param name="videoid"></param>
+        /// <returns>Returnerar information om videoklipp</returns>
         public Video GetVideoDataByID(int videoid)
         {
 
@@ -324,6 +297,7 @@ namespace Tommy.Model.DAL
                                 videocategoryid = reader.GetInt32(videocategoryIndex),
                                 videotitle = reader.GetString(videotitleIndex),
                                 createddate = reader.GetDateTime(createddateIndex)
+   
                             };
                         }
                     }
@@ -337,6 +311,11 @@ namespace Tommy.Model.DAL
             }
         }
 
+        /// <summary>
+        /// Uppdaterar ett videoklipps information
+        /// </summary>
+        /// <param name="video"></param>
+        /// <param name="videocategoryid"></param>
         public void UpdateVideo(Video video, int videocategoryid)
         {
             using (SqlConnection conn = CreateConnection())
