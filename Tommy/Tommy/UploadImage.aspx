@@ -22,7 +22,7 @@
 
     <%--Uppladdning--%>
     <label for="ImageTitleTextBox" id="HeaderLabel" runat="server">Bild rubrik</label>
-    <asp:TextBox ID="ImageTitleTextBox" runat="server" Text="" MaxLength="255" CssClass="Header" />
+    <asp:TextBox ID="ImageTitleTextBox" runat="server" Text="" MaxLength="35" CssClass="Header" />
     <asp:DropDownList ID="ImageCategoryDropDownList" runat="server"
         SelectMethod="ImageCategoryDropDownList_GetData"
         DataTextField="imagecategoryname"

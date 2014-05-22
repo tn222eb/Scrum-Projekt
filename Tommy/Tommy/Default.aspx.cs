@@ -26,5 +26,11 @@ namespace Tommy
         {
             return Service.GetLatestImages();
         }
+
+       
+        public IEnumerable<Tommy.Model.Video> VideoListView_GetData()
+        {
+            return Service.GetLatestVideos();
+        }
     }
 }

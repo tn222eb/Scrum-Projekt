@@ -43,34 +43,37 @@ namespace Tommy
 
         public void EditImageFormView_UpdateItem(Tommy.Model.Image image)
         {
-            try
+            if (IsValid)
             {
-
-                if (TryUpdateModel(image))
+                try
                 {
-                    var categoryid = 0;
 
-                    DropDownList dropdownList = (DropDownList)EditImageFormView.FindControl("ImageCategoryDropDownList");
-                    foreach (ListItem item in dropdownList.Items)
+                    if (TryUpdateModel(image))
                     {
-                        if (item.Selected)
+                        var categoryid = 0;
+
+                        DropDownList dropdownList = (DropDownList)EditImageFormView.FindControl("ImageCategoryDropDownList");
+                        foreach (ListItem item in dropdownList.Items)
                         {
-                            categoryid = int.Parse(item.Value);
+                            if (item.Selected)
+                            {
+                                categoryid = int.Parse(item.Value);
 
+                            }
                         }
+
+                        Service.UpdateImage(image, categoryid);
+                        Page.SetTempData("Message", "Bilden har uppdaterats.");
+                        Response.RedirectToRoute("uploadimage");
+                        Context.ApplicationInstance.CompleteRequest();
                     }
-
-                    Service.UpdateImage(image, categoryid);
-                    Page.SetTempData("Message", image.imagetitle + " har uppdaterats.");
-                    Response.RedirectToRoute("uploadimage");
-                    Context.ApplicationInstance.CompleteRequest();
                 }
-            }
-            catch (Exception)
-            {
-                ModelState.AddModelError(String.Empty, "");
-            }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(String.Empty, "");
+                }
 
+            }
         }
     }
 }

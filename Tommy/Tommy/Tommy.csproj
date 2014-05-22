@@ -131,7 +131,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -199,7 +199,6 @@
     <Content Include="Pages\CategoryPages\Image\Random.aspx" />
     <Content Include="Pages\CategoryPages\Image\Roligt.aspx" />
     <Content Include="Pages\CategoryPages\Image\Sport.aspx" />
-    <Content Include="Pages\CategoryPages\Video\Film.aspx" />
     <Content Include="FlowPlayer\flowplayer-3.2.12.min.js" />
     <Content Include="FlowPlayer\flowplayer-3.2.16.swf" />
     <Content Include="FlowPlayer\flowplayer.controls-3.2.15.swf" />
@@ -322,13 +321,6 @@
     </Compile>
     <Compile Include="Pages\CategoryPages\Image\Sport.aspx.designer.cs">
       <DependentUpon>Sport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\CategoryPages\Video\Film.aspx.cs">
-      <DependentUpon>Film.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\CategoryPages\Video\Film.aspx.designer.cs">
-      <DependentUpon>Film.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

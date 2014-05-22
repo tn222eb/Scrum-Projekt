@@ -87,8 +87,6 @@
                                 <li>
                                     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%$ RouteUrl:routename=videoroligt %>' Text="Roligt" /></li>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%$ RouteUrl:routename=videofilm %>' Text="Film" /></li>
-                                <li>
                                     <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl='<%$ RouteUrl:routename=videorandom %>' Text="Random" /></li>
                                 <li class='last'>
                                     <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl='<%$ RouteUrl:routename=videomusik %>' Text="Musik" /></li>
@@ -122,12 +120,12 @@
 
         </header>
 
-        <div id="body">
+        <div id ="main">
             <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
-            <section class="content-wrapper main-content clear-fix">
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />
-            </section>
         </div>
+
+
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">

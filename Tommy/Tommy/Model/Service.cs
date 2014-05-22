@@ -164,5 +164,10 @@ namespace Tommy.Model
         {
             return ImageDAL.GetLatestImages();
         }
+
+        public List<Video> GetLatestVideos()
+        {
+            return VideoDAL.GetLatestVideos();
+        }
     }
 }

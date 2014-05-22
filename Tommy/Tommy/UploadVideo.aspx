@@ -22,7 +22,7 @@
 
     <%--Uppladdning--%>
     <label for="VideoTitleTextBox" id="HeaderLabel" runat="server">Video rubrik</label>
-    <asp:TextBox ID="VideoTitleTextBox" runat="server" Text="" MaxLength="255" CssClass="Header" />
+    <asp:TextBox ID="VideoTitleTextBox" runat="server" Text="" MaxLength="35" CssClass="Header" />
     <asp:DropDownList ID="VideoCategoryDropDownList" runat="server"
         SelectMethod="VideoCategoryDropDownList_GetData"
         DataTextField="videocategoryname"

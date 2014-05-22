@@ -29,7 +29,7 @@ namespace Tommy.Model
                     cmd.Parameters.Add("@imagename", SqlDbType.NVarChar, 128).Value = imagename;
                     cmd.Parameters.Add("@userid", SqlDbType.VarChar, 100).Value = userid;
                     cmd.Parameters.Add("@imagecategoryid", SqlDbType.Int, 4).Value = imagecategoryid;
-                    cmd.Parameters.Add("@imagetitle", SqlDbType.VarChar, 255).Value = imagetitle;
+                    cmd.Parameters.Add("@imagetitle", SqlDbType.VarChar, 35).Value = imagetitle;
 
                     connection.Open();
 
@@ -327,7 +327,7 @@ namespace Tommy.Model
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@imageid", SqlDbType.Int, 4).Value = image.imageid;
-                    cmd.Parameters.Add("@imagetitle", SqlDbType.VarChar, 255).Value = image.imagetitle;
+                    cmd.Parameters.Add("@imagetitle", SqlDbType.VarChar, 35).Value = image.imagetitle;
                     cmd.Parameters.Add("@imagecategoryid", SqlDbType.Int, 4).Value = imagecategoryid;
 
                     conn.Open();

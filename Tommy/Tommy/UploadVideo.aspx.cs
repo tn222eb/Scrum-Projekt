@@ -89,7 +89,7 @@ namespace Tommy
 
         public bool IsValidContentLength(int contentlength)
         {
-            return contentlength < 20971520;
+            return contentlength < 31457280;
         }
 
         public string GetFaceBookUserID()
@@ -115,7 +115,7 @@ namespace Tommy
                         {
                             if (!IsValidContentLength((FileUpload.PostedFile.ContentLength)))
                             {
-                                ModelState.AddModelError(String.Empty, "Filen måste vara mindre 20 mb.");
+                                ModelState.AddModelError(String.Empty, "Filen måste vara mindre 30 mb.");
                             }
                             else
                             {

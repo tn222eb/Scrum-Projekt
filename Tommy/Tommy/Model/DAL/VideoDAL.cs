@@ -29,7 +29,7 @@ namespace Tommy.Model.DAL
                     cmd.Parameters.Add("@videoname", SqlDbType.NVarChar, 128).Value = videoname;
                     cmd.Parameters.Add("@userid", SqlDbType.VarChar, 100).Value = userid;
                     cmd.Parameters.Add("@videocategoryid", SqlDbType.Int, 4).Value = videocategoryid;
-                    cmd.Parameters.Add("@videotitle", SqlDbType.VarChar, 255).Value = videotitle;
+                    cmd.Parameters.Add("@videotitle", SqlDbType.VarChar, 35).Value = videotitle;
 
                     connection.Open();
 
@@ -326,7 +326,7 @@ namespace Tommy.Model.DAL
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@videoid", SqlDbType.Int, 4).Value = video.videoid;
-                    cmd.Parameters.Add("@videotitle", SqlDbType.VarChar, 255).Value = video.videotitle;
+                    cmd.Parameters.Add("@videotitle", SqlDbType.VarChar, 35).Value = video.videotitle;
                     cmd.Parameters.Add("@videocategoryid", SqlDbType.Int, 4).Value = videocategoryid;
 
                     conn.Open();
@@ -339,6 +339,63 @@ namespace Tommy.Model.DAL
                 }
             }
         }
+
+
+
+
+        public List<Video> GetLatestVideos()
+        {
+            using (SqlConnection connection = CreateConnection())
+            {
+                try
+                {
+                    var videos = new List<Video>(100);
+
+                    var cmd = new SqlCommand("appSchema.GetLatestVideos", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        var videoidIndex = reader.GetOrdinal("videoid");
+                        var videoameIndex = reader.GetOrdinal("videoname");
+                        var useridIndex = reader.GetOrdinal("userid");
+                        var videocategoryIndex = reader.GetOrdinal("videocategoryid");
+                        var videotitleIndex = reader.GetOrdinal("videotitle");
+                        var createddateIndex = reader.GetOrdinal("createddate");
+
+                        while (reader.Read())
+                        {
+                            videos.Add(new Video
+                            {
+                                videoid = reader.GetInt32(videoidIndex),
+                                videoname = reader.GetString(videoameIndex),
+                                userid = reader.GetString(useridIndex),
+                                videocategoryid = reader.GetInt32(videocategoryIndex),
+                                videotitle = reader.GetString(videotitleIndex),
+                                createddate = reader.GetDateTime(createddateIndex)
+                            });
+                        }
+                    }
+                    videos.TrimExcess();
+
+                    return videos;
+                }
+                catch (Exception)
+                {
+                    throw new ApplicationException("An error occured in the data access layer.");
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
 
 
 

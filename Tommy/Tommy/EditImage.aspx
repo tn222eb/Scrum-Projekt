@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Redigera bild" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EditImage.aspx.cs" Inherits="Tommy.EditImage" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:ValidationSummary ID="ValidationSummary" runat="server" CssClass="editvalidation" />
+    <asp:ValidationSummary ID="ValidationSummary" runat="server" CssClass="validation-summary-errors"/>
     <asp:FormView ID="EditImageFormView" runat="server"
         ItemType="Tommy.Model.Image"
         DataKeyNames="ImageID"
@@ -12,8 +12,8 @@
         <EditItemTemplate>
             <div class="editor-field">
                 <label for="ImageTitleTextBox" id="ImageTitleLabel" runat="server">Bild rubrik</label>
-                <asp:TextBox ID="ImageTitleTextBox" runat="server" Text='<%# BindItem.imagetitle %>' MaxLength="255" />
-                <asp:RequiredFieldValidator ID="ImageTitleRequiredFieldValidator" runat="server" ErrorMessage="Rubrik måste anges." ControlToValidate="ImageTitleTextBox" Display="None" ValidationGroup="EditValidation"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="ImageTitleTextBox" runat="server" Text='<%# BindItem.imagetitle %>' MaxLength="35" />
+                <asp:RequiredFieldValidator ID="ImageTitleRequiredFieldValidator" runat="server" ErrorMessage="Rubrik måste anges." ControlToValidate="ImageTitleTextBox" Display="None"></asp:RequiredFieldValidator>
             </div>
 
             <div>
@@ -27,7 +27,7 @@
             </div>
 
             <div>
-                <asp:LinkButton ID="UpdateButton" runat="server" Text="Spara" CommandName="Update" ValidationGroup="EditValidation" CssClass="cssbutton" />
+                <asp:LinkButton ID="UpdateButton" runat="server" Text="Spara" CommandName="Update" CssClass="cssbutton" />
                 <asp:HyperLink ID="CancelButton" runat="server" NavigateUrl='<%$ RouteUrl:routename=uploadimage %>' Text="Avbryt" CssClass="cssbutton" />
             </div>
         </EditItemTemplate>

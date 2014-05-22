@@ -62,7 +62,7 @@ namespace Tommy
                         } 
 
                         Service.UpdateVideo(video, categoryID);
-                        Page.SetTempData("Message", video.videotitle + " har uppdaterats.");
+                        Page.SetTempData("Message", "Videoklippet har uppdaterats.");
                         Response.RedirectToRoute("uploadvideo");
                         Context.ApplicationInstance.CompleteRequest();
                     }

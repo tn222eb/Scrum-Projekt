@@ -329,3 +329,102 @@ H:\Tommy - ny - Copy\Tommy\obj\Debug\Tommy.csprojResolveAssemblyReference.cache
 H:\Tommy - ny - Copy\Tommy\obj\Debug\Tommy.dll.licenses
 H:\Tommy - ny - Copy\Tommy\obj\Debug\Tommy.dll
 H:\Tommy - ny - Copy\Tommy\obj\Debug\Tommy.pdb
+E:\Tommy - ny - Copy - used\Tommy\bin\Tommy.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\Tommy.pdb
+E:\Tommy - ny - Copy - used\Tommy\bin\Antlr3.Runtime.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\AspNet.ScriptManager.jQuery.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\DotNetOpenAuth.AspNet.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\DotNetOpenAuth.Core.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\DotNetOpenAuth.OAuth.Consumer.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\DotNetOpenAuth.OAuth.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\DotNetOpenAuth.OpenId.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\EntityFramework.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\Facebook.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\Microsoft.ScriptManager.MSAjax.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\Microsoft.ScriptManager.WebForms.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\Microsoft.Web.Infrastructure.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\System.Web.Optimization.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\System.Web.Providers.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\WebGrease.dll
+E:\Tommy - ny - Copy - used\Tommy\bin\Facebook.xml
+E:\Tommy - ny - Copy - used\Tommy\bin\EntityFramework.xml
+E:\Tommy - ny - Copy - used\Tommy\bin\DotNetOpenAuth.Core.xml
+E:\Tommy - ny - Copy - used\Tommy\bin\DotNetOpenAuth.OAuth.xml
+E:\Tommy - ny - Copy - used\Tommy\bin\DotNetOpenAuth.OAuth.Consumer.xml
+E:\Tommy - ny - Copy - used\Tommy\bin\DotNetOpenAuth.OpenId.xml
+E:\Tommy - ny - Copy - used\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+E:\Tommy - ny - Copy - used\Tommy\bin\DotNetOpenAuth.AspNet.xml
+E:\Tommy - ny - Copy - used\Tommy\obj\Debug\Tommy.csprojResolveAssemblyReference.cache
+E:\Tommy - ny - Copy - used\Tommy\obj\Debug\Tommy.dll.licenses
+E:\Tommy - ny - Copy - used\Tommy\obj\Debug\Tommy.dll
+E:\Tommy - ny - Copy - used\Tommy\obj\Debug\Tommy.pdb
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\Tommy.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\Tommy.pdb
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\Antlr3.Runtime.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\AspNet.ScriptManager.jQuery.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\DotNetOpenAuth.AspNet.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\DotNetOpenAuth.Core.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\DotNetOpenAuth.OAuth.Consumer.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\DotNetOpenAuth.OAuth.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\DotNetOpenAuth.OpenId.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\EntityFramework.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\Facebook.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\Microsoft.ScriptManager.MSAjax.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\Microsoft.ScriptManager.WebForms.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\Microsoft.Web.Infrastructure.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\System.Web.Optimization.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\System.Web.Providers.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\WebGrease.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\Facebook.xml
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\EntityFramework.xml
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\DotNetOpenAuth.Core.xml
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\DotNetOpenAuth.OAuth.xml
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\DotNetOpenAuth.OAuth.Consumer.xml
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\DotNetOpenAuth.OpenId.xml
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+E:\Tommy - ny - Copy - used - Copy\Tommy\bin\DotNetOpenAuth.AspNet.xml
+E:\Tommy - ny - Copy - used - Copy\Tommy\obj\Debug\Tommy.csprojResolveAssemblyReference.cache
+E:\Tommy - ny - Copy - used - Copy\Tommy\obj\Debug\Tommy.dll.licenses
+E:\Tommy - ny - Copy - used - Copy\Tommy\obj\Debug\Tommy.dll
+E:\Tommy - ny - Copy - used - Copy\Tommy\obj\Debug\Tommy.pdb
+H:\använd denna\Tommy\bin\Tommy.dll
+H:\använd denna\Tommy\bin\Tommy.pdb
+H:\använd denna\Tommy\bin\Antlr3.Runtime.dll
+H:\använd denna\Tommy\bin\AspNet.ScriptManager.jQuery.dll
+H:\använd denna\Tommy\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+H:\använd denna\Tommy\bin\DotNetOpenAuth.AspNet.dll
+H:\använd denna\Tommy\bin\DotNetOpenAuth.Core.dll
+H:\använd denna\Tommy\bin\DotNetOpenAuth.OAuth.Consumer.dll
+H:\använd denna\Tommy\bin\DotNetOpenAuth.OAuth.dll
+H:\använd denna\Tommy\bin\DotNetOpenAuth.OpenId.dll
+H:\använd denna\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+H:\använd denna\Tommy\bin\EntityFramework.dll
+H:\använd denna\Tommy\bin\Facebook.dll
+H:\använd denna\Tommy\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+H:\använd denna\Tommy\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+H:\använd denna\Tommy\bin\Microsoft.ScriptManager.MSAjax.dll
+H:\använd denna\Tommy\bin\Microsoft.ScriptManager.WebForms.dll
+H:\använd denna\Tommy\bin\Microsoft.Web.Infrastructure.dll
+H:\använd denna\Tommy\bin\System.Web.Optimization.dll
+H:\använd denna\Tommy\bin\System.Web.Providers.dll
+H:\använd denna\Tommy\bin\WebGrease.dll
+H:\använd denna\Tommy\bin\Facebook.xml
+H:\använd denna\Tommy\bin\EntityFramework.xml
+H:\använd denna\Tommy\bin\DotNetOpenAuth.Core.xml
+H:\använd denna\Tommy\bin\DotNetOpenAuth.OAuth.xml
+H:\använd denna\Tommy\bin\DotNetOpenAuth.OAuth.Consumer.xml
+H:\använd denna\Tommy\bin\DotNetOpenAuth.OpenId.xml
+H:\använd denna\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+H:\använd denna\Tommy\bin\DotNetOpenAuth.AspNet.xml
+H:\använd denna\Tommy\obj\Debug\Tommy.csprojResolveAssemblyReference.cache
+H:\använd denna\Tommy\obj\Debug\Tommy.dll.licenses
+H:\använd denna\Tommy\obj\Debug\Tommy.dll
+H:\använd denna\Tommy\obj\Debug\Tommy.pdb
