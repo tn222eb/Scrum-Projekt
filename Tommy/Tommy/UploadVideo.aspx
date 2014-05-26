@@ -1,47 +1,66 @@
-﻿<%@ Page Title="Ladda upp videoklipp" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UploadVideo.aspx.cs" Inherits="Tommy.UploadVideo" %>
+﻿<%@ Page Title="Mina videoklipp" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UploadVideo.aspx.cs" Inherits="Tommy.UploadVideo" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Ladda upp videoklipp</h2>
+    <h1>Mina videoklipp</h1>
+
     <br />
 
-    <%--Info--%>
-    <asp:Panel ID="InfoPanel" runat="server">
-        <div>
-            <span>Innan du laddar upp ett videoklipp, se till så att den inte överstiger :</span>
-            <br />
-            <span>- 20 mb</span>
-        </div>
-        <br />
-        <div>
-            <span>Rekommenderade bild format :</span>
-            <br />
-            <span>Format: endast <b>mp4</b></span>
-        </div>
-    </asp:Panel>
-    <br />
-
-    <%--Uppladdning--%>
-    <label for="VideoTitleTextBox" id="HeaderLabel" runat="server">Video rubrik</label>
-    <asp:TextBox ID="VideoTitleTextBox" runat="server" Text="" MaxLength="35" CssClass="Header" />
-    <asp:DropDownList ID="VideoCategoryDropDownList" runat="server"
-        SelectMethod="VideoCategoryDropDownList_GetData"
-        DataTextField="videocategoryname"
-        DataValueField="videocategoryid" CssClass="CategoryDropDownList" />
-    <asp:FileUpload ID="FileUpload" runat="server" />
-    <asp:Button ID="UploadButton" Text="Upload" runat="server" OnClick="UploadButton_Click" /><br />
-
-
-    <%--Message--%>
     <asp:Label ID="LoginStatus" Text="" runat="server" />
-    <asp:Label ID="SuccessLabel" Text="" runat="server" CssClass="success" />
+
+    <asp:Label ID="UploadBoxContainer" runat="server">
+        <div id="UploadBox">
+            <h2>Ladda upp videoklipp</h2>
+            <br />
+
+            <%--Info--%>
+            <asp:Panel ID="InfoPanel" runat="server">
+                <div>
+                    <span>Innan du laddar upp ett videoklipp, se till så att den inte överstiger:</span>
+                    <span id="bold">30 MB</span>
+                </div>
+                <br />
+                <div>
+                    <span>Format: </span>
+                    <span id="bold2">MP4</span> (H264)
+                </div>
+            </asp:Panel>
+            <br />
+
+            <%--Uppladdning--%>
+            <label for="VideoTitleTextBox" id="HeaderLabel" runat="server">Videorubrik</label>
+            <asp:TextBox ID="VideoTitleTextBox" runat="server" Text="" MaxLength="35" CssClass="titletextbox" />
+            <br />
+            <br />
+            <div>
+                <label for="VideoCategoryDropDownList" id="categori" runat="server">Videokategori</label>
+                <asp:DropDownList ID="VideoCategoryDropDownList" runat="server"
+                    SelectMethod="VideoCategoryDropDownList_GetData"
+                    DataTextField="videocategoryname"
+                    DataValueField="videocategoryid" CssClass="CategoryDropDownList" />
+            </div>
+
+            <br />
+            <asp:FileUpload ID="FileUpload" runat="server" />
+            <br />
+            <asp:Button ID="UploadButton" Text="Ladda upp" runat="server" OnClick="UploadButton_Click" CausesValidation="True" /><br />
+
+            <div class="loading">
+                <asp:Image ID="loadingbar" runat="server" ImageUrl="~/Images/Icons/loader.gif" /><span>Laddar. Var god och vänta.</span>
+            </div>
+
+            <%--Message--%>
+            <asp:Panel ID="SuccessMessage" runat="server" Visible="false">
+                <asp:Image ID="correct" runat="server" ImageUrl="~/Images/Icons/correct.png" /><asp:Label ID="SuccessLabel" Text="" runat="server" CssClass="success" />
+            </asp:Panel>
 
 
-    <%--Validation--%>
-    <asp:RequiredFieldValidator ID="VideoTitleRequiredFieldValidator" runat="server" ErrorMessage="Det måste finnas en video rubrik." Display="None" ControlToValidate="VideoTitleTextBox"></asp:RequiredFieldValidator>
-    <asp:RequiredFieldValidator ID="FileUploadRequiredFieldValidator" runat="server" ErrorMessage="Ingen fil har valts." Display="None" ControlToValidate="FileUpload"></asp:RequiredFieldValidator>
-    <asp:RegularExpressionValidator ID="RegularExpressionValidator" runat="server" ErrorMessage="Endast videoklipp av formatet mp4 är tillåtna" ControlToValidate="FileUpload" Display="None" ValidationExpression=".*.(mp4)"></asp:RegularExpressionValidator>
-    <asp:ValidationSummary ID="ValidationSummary" runat="server" CssClass="validation-summary-errors" />
-
+            <%--Validation--%>
+            <asp:RequiredFieldValidator ID="VideoTitleRequiredFieldValidator" runat="server" ErrorMessage="Det måste finnas en video rubrik." Display="None" ControlToValidate="VideoTitleTextBox"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="FileUploadRequiredFieldValidator" runat="server" ErrorMessage="Ingen fil har valts." Display="None" ControlToValidate="FileUpload"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator" runat="server" ErrorMessage="Endast videoklipp av formatet mp4 är tillåtna" ControlToValidate="FileUpload" Display="None" ValidationExpression=".*.(mp4)"></asp:RegularExpressionValidator>
+            <asp:ValidationSummary ID="ValidationSummary" runat="server" CssClass="validation-summary-errors" />
+        </div>
+    </asp:Label>
     <br />
     <br />
 
@@ -54,22 +73,30 @@
             <table>
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
             </table>
-            <asp:DataPager ID="DataPager" runat="server" PageSize="6">
-                <Fields>
-                    <asp:NextPreviousPagerField ShowFirstPageButton="True" FirstPageText=" Första " ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="pagingbutton" />
-                    <asp:NumericPagerField ButtonType="Link" />
-                    <asp:NextPreviousPagerField ShowLastPageButton="True" LastPageText=" Sista " ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="pagingbutton" />
-                </Fields>
-            </asp:DataPager>
+            <div id="clear">
+                <asp:DataPager ID="DataPager" runat="server" PageSize="6">
+                    <Fields>
+                        <asp:NextPreviousPagerField ShowFirstPageButton="True" FirstPageText=" Första " ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="pagingbutton" />
+                      <asp:NumericPagerField ButtonType="Link" CurrentPageLabelCssClass="currentPagerNumber" ButtonCount="6" NumericButtonCssClass="otherPagerNumber"/>
+                        <asp:NextPreviousPagerField ShowLastPageButton="True" LastPageText=" Sista " ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="pagingbutton" />
+                    </Fields>
+                </asp:DataPager>
         </LayoutTemplate>
         <ItemTemplate>
             <span class="position">
-                <asp:Label ID="VideoName" runat="server" Text="<%# Item.videotitle %>" CssClass="itemtitle" />
-                <br />
+                <div id="line">
+                    <asp:Label ID="LabelForVideoName" runat="server">Videonamn:</asp:Label>
+                    <asp:Label ID="VideoName" runat="server" Text="<%# Item.videotitle %>" CssClass="itemtitle" />
+
+                    <br />
+                    <asp:Label ID="Label1" runat="server">Datum:</asp:Label>
+                    <span id="Span1"><%# Item.createddate.ToString("yyyy/MM/dd") %></span>
+                    <br />
+                </div>
                 <a class="player" href='<%#"../../Videos/" + Item.videoname %>'></a>
-                <br />
-                <asp:HyperLink ID="EditButton" runat="server" Text="Redigera" NavigateUrl='<%# GetRouteUrl("editvideo", new { id = Item.videoid }) %>' CssClass="cssbutton" />
-                <asp:HyperLink ID="DeleteButton" runat="server" Text="Ta bort" NavigateUrl='<%# GetRouteUrl("deletevideo", new { id = Item.videoid }) %>' CssClass="cssbutton" />
+
+                <asp:HyperLink ID="EditButton" runat="server" Text="Redigera" NavigateUrl='<%# GetRouteUrl("editvideo", new { id = Item.videoid }) %>' CssClass="buttonstyling" />
+                <asp:HyperLink ID="DeleteButton" runat="server" Text="Ta bort" NavigateUrl='<%# GetRouteUrl("deletevideo", new { id = Item.videoid }) %>' CssClass="buttonstyling" />
             </span>
         </ItemTemplate>
         <EmptyDataTemplate>
@@ -91,14 +118,5 @@
             clip: { provider: 'pseudo', autoPlay: false, autoBuffering: true },
         });
     </script>
-    <script>
-        $(document).ready(function () {
-            var $statusText = $("#MainContent_SuccessLabel");
-            if ($statusText.length) {
-                setTimeout(function () {
-                    $statusText.fadeOut();
-                }, 3000);
-            }
-        });
-    </script>
+
 </asp:Content>

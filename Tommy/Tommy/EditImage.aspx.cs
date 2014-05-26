@@ -1,11 +1,14 @@
-﻿using System;
+﻿using ASPSnippets.FaceBookAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.ModelBinding;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Tommy.Model;
+using Tommy.Model.DAL;
 
 namespace Tommy
 {
@@ -18,22 +21,57 @@ namespace Tommy
             get { return _service ?? (_service = new Service()); }
         }
 
+        public string Code
+        {
+            get { return ((SiteMaster)this.Master).Code; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Code == null)
+            {
+                LoginStatus.Text = "Du måste vara inloggad genom Facebook för att redigera en bild.";
+                LoginStatus.CssClass = "fail";
+                EditImageFormView.Visible = false;
+            }
 
+        }
+
+        public string GetFaceBookUserID()
+        {
+            string data = FaceBookConnect.Fetch(Code, "me");
+            FacebookUser user = new JavaScriptSerializer().Deserialize<FacebookUser>(data);
+            return user.Id;
         }
 
         public Tommy.Model.Image EditImageFormView_GetItem([RouteData]int id)
         {
             try
             {
-                return Service.GetImageDataByID(id);
+                var imageData = Service.GetImageDataByID(id);
+                var FacebookUser = GetFaceBookUserID();
+                var admin = Service.GetAdminData();
+
+                if (FacebookUser == admin)
+                {
+                   return imageData;
+                }
+
+
+                if (imageData.userid != FacebookUser)
+                {
+                    Response.RedirectToRoute("default");
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+                return imageData;
             }
+            
             catch (Exception)
             {
-                ModelState.AddModelError(String.Empty, "");
-                return null;
+                Response.RedirectToRoute("default");
+                Context.ApplicationInstance.CompleteRequest();
             }
+            return null;
         }
 
         public IEnumerable<ImageCategory> ImageCategoryDropDownList_GetData()
@@ -70,7 +108,7 @@ namespace Tommy
                 }
                 catch (Exception)
                 {
-                    ModelState.AddModelError(String.Empty, "");
+                    ModelState.AddModelError(String.Empty, "Något fel har uppstått då bilden skulle redigeras.");
                 }
 
             }

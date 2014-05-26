@@ -13,6 +13,24 @@ namespace Tommy {
     public partial class UploadImage {
         
         /// <summary>
+        /// LoginStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LoginStatus;
+        
+        /// <summary>
+        /// UploadBoxContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label UploadBoxContainer;
+        
+        /// <summary>
         /// InfoPanel control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,15 @@ namespace Tommy {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ImageTitleTextBox;
+        
+        /// <summary>
+        /// categori control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl categori;
         
         /// <summary>
         /// ImageCategoryDropDownList control.
@@ -67,13 +94,31 @@ namespace Tommy {
         protected global::System.Web.UI.WebControls.Button UploadButton;
         
         /// <summary>
-        /// LoginStatus control.
+        /// loadingbar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LoginStatus;
+        protected global::System.Web.UI.WebControls.Image loadingbar;
+        
+        /// <summary>
+        /// SuccessMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel SuccessMessage;
+        
+        /// <summary>
+        /// correct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image correct;
         
         /// <summary>
         /// SuccessLabel control.

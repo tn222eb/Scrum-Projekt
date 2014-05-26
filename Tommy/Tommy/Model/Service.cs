@@ -9,15 +9,15 @@ namespace Tommy.Model
 {
     public class Service
     {
-        private FacebookUserDAL _facebookDAL;
+        private FacebookUserDAL _facebookUserDAL;
         private ImageCategoryDAL _imageCategoryDAL;
         private ImageDAL _imageDAL;
         private VideoCategoryDAL _videoCategoryDAL;
         private VideoDAL _videoDAL;
 
-        private FacebookUserDAL FacebookDAL
+        private FacebookUserDAL FacebookUserDAL
         {
-            get { return _facebookDAL ?? (_facebookDAL = new FacebookUserDAL()); }
+            get { return _facebookUserDAL ?? (_facebookUserDAL = new FacebookUserDAL()); }
         }
 
         private ImageCategoryDAL ImageCategoryDAL
@@ -52,12 +52,12 @@ namespace Tommy.Model
 
         public void InsertUserData(string userid, string name)
         {
-            FacebookDAL.InsertUserData(userid, name);
+            FacebookUserDAL.InsertUserData(userid, name);
         }
 
         public string GetUserData(string userid)
         {
-            return FacebookDAL.GetUserData(userid);
+            return FacebookUserDAL.GetUserData(userid);
         }
 
         public IEnumerable<ImageCategory> GetImageCategory(bool refresh = false)
@@ -169,5 +169,16 @@ namespace Tommy.Model
         {
             return VideoDAL.GetLatestVideos();
         }
+
+        public IEnumerable<FacebookUser> GetNames()
+        {
+            return FacebookUserDAL.GetNames();
+        }
+
+        public string GetAdminData()
+        {
+            return FacebookUserDAL.GetAdminData();
+        }
+
     }
 }

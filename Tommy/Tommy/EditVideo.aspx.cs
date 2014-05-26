@@ -1,11 +1,14 @@
-﻿using System;
+﻿using ASPSnippets.FaceBookAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.ModelBinding;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Tommy.Model;
+using Tommy.Model.DAL;
 
 namespace Tommy
 {
@@ -18,24 +21,56 @@ namespace Tommy
             get { return _service ?? (_service = new Service()); }
         }
 
+        public string Code
+        {
+            get { return ((SiteMaster)this.Master).Code; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Code == null)
+            {
+                LoginStatus.Text = "Du måste vara inloggad genom Facebook för att redigera ett videoklipp.";
+                LoginStatus.CssClass = "fail";
+                EditVideoFormView.Visible = false;
+            }
 
+        }
+
+        public string GetFaceBookUserID()
+        {
+            string data = FaceBookConnect.Fetch(Code, "me");
+            FacebookUser user = new JavaScriptSerializer().Deserialize<FacebookUser>(data);
+            return user.Id;
         }
 
         public Tommy.Model.Video EditVideoFormView_GetItem([RouteData]int id)
         {
             try
             {
-                return Service.GetVideoDataByID(id);
+                var videoData = Service.GetVideoDataByID(id);
+                var FacebookUser = GetFaceBookUserID();
+
+                var admin = Service.GetAdminData();
+
+                if (FacebookUser == admin)
+                {
+                    return videoData;
+                }
+
+                if (videoData.userid != FacebookUser)
+                {
+                    Response.RedirectToRoute("default");
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+                return videoData;
             }
             catch (Exception)
             {
-                ModelState.AddModelError(String.Empty, "Fel har uppstått då videoklippet ej hittas");
+                ModelState.AddModelError(String.Empty, "");
                 return null;
             }
         }
-
         public IEnumerable <VideoCategory> VideoCategoryDropDownList_GetData()
         {
             return Service.GetVideoCategory();
@@ -69,7 +104,7 @@ namespace Tommy
                 }
                 catch (Exception)
                 {
-                    ModelState.AddModelError(String.Empty, "Fel har uppstått då videoklippet skulle redigeras.");
+                    ModelState.AddModelError(String.Empty, "Något fel har uppstått då videoklippet skulle redigeras.");
                 }
 
             }

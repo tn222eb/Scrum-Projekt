@@ -10,6 +10,10 @@ using Tommy.Model;
 using ASPSnippets.FaceBookAPI;
 using System.Web.Script.Serialization;
 using Tommy.Model.DAL;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+
 
 namespace Tommy
 {
@@ -20,13 +24,6 @@ namespace Tommy
         private Service Service
         {
             get { return _service ?? (_service = new Service()); }
-        }
-
-        private FacebookUserDAL _facebookUserDAL;
-
-        private FacebookUserDAL FaceBookUserDAL
-        {
-            get { return _facebookUserDAL ?? (_facebookUserDAL = new FacebookUserDAL()); }
         }
 
         public string Code
@@ -48,16 +45,17 @@ namespace Tommy
 
         protected void Page_Load(object sender, EventArgs e)
         {
+ 
             if (Message != null)
             {
-                SuccessLabel.Visible = true;
+                SuccessMessage.Visible = true;
                 SuccessLabel.Text = Message;
                 Session.Remove("Message");
             }
 
             if (Code == null)
             {
-                LoginStatus.Text = "Du måste vara inloggad";
+                LoginStatus.Text = "Du måste vara inloggad genom Facebook för att nå mina bilder.";
                 LoginStatus.CssClass = "fail";
                 FileUpload.Visible = false;
                 UploadButton.Visible = false;
@@ -66,6 +64,8 @@ namespace Tommy
                 ImageTitleTextBox.Visible = false;
                 HeaderLabel.Visible = false;
                 InfoPanel.Visible = false;
+                UploadBoxContainer.Visible = false;
+                categori.Visible = false;
             }
         }
 
@@ -84,10 +84,11 @@ namespace Tommy
 
         public bool IsValidImage(FileUpload fileupload)
         {
-            return fileupload.PostedFile.ContentType == "image/png" ||
+            return  fileupload.PostedFile.ContentType == "image/png" ||
                     fileupload.PostedFile.ContentType == "image/bmp" ||
                     fileupload.PostedFile.ContentType == "image/gif" ||
-                    fileupload.PostedFile.ContentType == "image/jpeg" && fileupload.HasFile;
+                    fileupload.PostedFile.ContentType == "image/jpeg" ||
+                    fileupload.PostedFile.ContentType == "image/jpg" && fileupload.HasFile;
         }
 
         public bool IsValidContentLength(int contentlength)
@@ -110,7 +111,7 @@ namespace Tommy
                 {
                     if (ImageTitleTextBox.Text == String.Empty)
                     {
-                        ModelState.AddModelError(String.Empty, "Det måste finnas en bild rubrik.");
+                        ModelState.AddModelError(String.Empty, "Måste finnas rubrik.");
                     }
                     else
                     {
@@ -122,6 +123,9 @@ namespace Tommy
                             }
                             else
                             {
+                                string script = "$(document).ready(function () { $('[id*=MainContent_UploadButton]').click(); });";
+                                ClientScript.RegisterStartupScript(this.GetType(), "load", script, true);
+
                                 string fileName = FileUpload.FileName;
                                 string userId = GetFaceBookUserID();
                                 string imageTitle = ImageTitleTextBox.Text;
@@ -150,7 +154,7 @@ namespace Tommy
                                 FileUpload.SaveAs(Path.Combine(PhysicalUploadImagePath, fileName));
                                 Service.InsertImageData(fileName, userId, categoryID, imageTitle);
 
-                                Message = fileName + " har laddats upp.";
+                                Message = "Bilden har laddats upp.";
                                 Response.RedirectToRoute("uploadimage");
                             }
                         }
@@ -170,7 +174,7 @@ namespace Tommy
         public IEnumerable<Tommy.Model.Image> ImageListView_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
             string userId = GetFaceBookUserID();
-            string adminId = FaceBookUserDAL.GetAdminData();
+            string adminId = Service.GetAdminData();
 
             if (userId == adminId)
             {

@@ -15,6 +15,13 @@ namespace Tommy.Pages.CategoryPages.Image
 {
     public partial class Motor : System.Web.UI.Page
     {
+        private Service _service;
+
+        private Service Service
+        {
+            get { return _service ?? (_service = new Service()); }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -45,6 +52,29 @@ namespace Tommy.Pages.CategoryPages.Image
             ListViewDataItem two = (ListViewDataItem)(sender as Control).NamingContainer;
             Label Close = (Label)two.FindControl("Close");
             Close.Visible = false;
+        }
+
+        protected void UploadersName_Command(object sender, CommandEventArgs e)
+        {
+            Response.Redirect(String.Format("http://www.facebook.com/{0}", e.CommandArgument ));
+            
+        }
+
+        protected void ImageListView_OnItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            var label = e.Item.FindControl("UploadersName") as LinkButton;
+            if (label != null)
+            {
+                // Typ omvandlar så att man kan använda nyckel
+                var user = (Tommy.Model.Image)e.Item.DataItem;
+
+                // Hämtar sedan namnen och väljer ut den som har samma ID
+                var facebookUser = Service.GetNames()
+                    .Single(c => c.Id == user.userid);
+
+                // Skriver ut namnen
+                label.Text = String.Format(label.Text, facebookUser.Name);
+            }
         }
 
     }

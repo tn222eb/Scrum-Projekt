@@ -107,5 +107,48 @@ namespace Tommy.Model.DAL
                 }
             }
         }
+
+
+        public IEnumerable<FacebookUser> GetNames()
+        {
+            using (SqlConnection connection = CreateConnection())
+            {
+                try
+                {
+                    var cmd = new SqlCommand("appSchema.GetNames", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    List<FacebookUser> names = new List<FacebookUser>();
+
+                    connection.Open();
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        var useridindex = reader.GetOrdinal("userid");
+                        var nameindex = reader.GetOrdinal("name");
+
+                        while (reader.Read())
+                        {
+                            names.Add(new FacebookUser
+                            {
+                                Id = reader.GetString(useridindex),
+                                Name = reader.GetString(nameindex),
+                            });
+                        }
+                    }
+                    names.TrimExcess();
+
+                    return names;
+                }
+                catch
+                {
+                    throw new ApplicationException("An error occured in the data access layer.");
+                }
+            }
+        }
+
+
+
+
     }
 }

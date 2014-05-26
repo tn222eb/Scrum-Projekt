@@ -84,11 +84,22 @@ namespace Tommy
 
         }
 
+        public void IsNewUser(FacebookUser faceBookUser)
+        {
+            var comparetoId = Service.GetUserData(faceBookUser.Id);
+
+            if (comparetoId != faceBookUser.Id)
+            {
+                Service.InsertUserData(faceBookUser.Id, faceBookUser.Name);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
+        // Har delvis tagit kod från ASPSnippets och anpassat så det fungerar för min kod
         protected void Login(object sender, EventArgs e)
         {
             FaceBookConnect.Authorize("user_photos,email", Request.Url.AbsoluteUri.Split('?')[0]);
@@ -109,16 +120,6 @@ namespace Tommy
             Name.Text = faceBookUser.Name;
             ProfileImage.ImageUrl = faceBookUser.PictureUrl;
             LoginButton.Visible = false;
-        }
-
-        public void IsNewUser(FacebookUser faceBookUser)
-        {
-            var comparetoId = Service.GetUserData(faceBookUser.Id);
-
-            if (comparetoId != faceBookUser.Id)
-            {
-                Service.InsertUserData(faceBookUser.Id, faceBookUser.Name);
-            }
         }
 
         public FacebookUser GetFaceBookUserData()

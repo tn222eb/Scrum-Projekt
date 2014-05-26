@@ -131,7 +131,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Style.css" />
+    <Content Include="Images\Icons\correct.png" />
+    <Content Include="Content\sitestyle.css" />
+    <Content Include="Content\MediaSwag.png" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -195,6 +198,12 @@
     <Content Include="demo\dummy-images\overflow.jpg" />
     <Content Include="EditImage.aspx" />
     <Content Include="EditVideo.aspx" />
+    <Content Include="Images\Icons\bildicon.png" />
+    <Content Include="Images\Icons\emailicon.png" />
+    <Content Include="Images\Icons\error.jpg" />
+    <Content Include="Images\Icons\loader.gif" />
+    <Content Include="Images\Icons\videoklippicon.jpg" />
+    <Content Include="Kontakt.aspx" />
     <Content Include="Pages\CategoryPages\Image\Motor.aspx" />
     <Content Include="Pages\CategoryPages\Image\Random.aspx" />
     <Content Include="Pages\CategoryPages\Image\Roligt.aspx" />
@@ -203,7 +212,7 @@
     <Content Include="FlowPlayer\flowplayer-3.2.16.swf" />
     <Content Include="FlowPlayer\flowplayer.controls-3.2.15.swf" />
     <Content Include="FlowPlayer\flowplayer.pseudostreaming-3.2.12.swf" />
-    <Content Include="Pages\Shared\Error.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="Pages\Shared\Image.aspx" />
     <Content Include="Images\Facebook\login.png" />
     <Content Include="Images\Facebook\logout.png" />
@@ -293,6 +302,13 @@
     <Compile Include="EditVideo.aspx.designer.cs">
       <DependentUpon>EditVideo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Kontakt.aspx.cs">
+      <DependentUpon>Kontakt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Kontakt.aspx.designer.cs">
+      <DependentUpon>Kontakt.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Service.cs" />
     <Compile Include="Pages\CategoryPages\Image\Motor.aspx.cs">
       <DependentUpon>Motor.aspx</DependentUpon>
@@ -325,11 +341,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Shared\Error.aspx.cs">
+    <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Shared\Error.aspx.designer.cs">
+    <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Shared\Image.aspx.cs">

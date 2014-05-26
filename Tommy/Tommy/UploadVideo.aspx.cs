@@ -22,13 +22,6 @@ namespace Tommy
             get { return _service ?? (_service = new Service()); }
         }
 
-        private FacebookUserDAL _facebookUserDAL;
-
-        private FacebookUserDAL FaceBookUserDAL
-        {
-            get { return _facebookUserDAL ?? (_facebookUserDAL = new FacebookUserDAL()); }
-        }
-
         public string Code
         {
             get { return ((SiteMaster)this.Master).Code; }
@@ -51,13 +44,13 @@ namespace Tommy
             if (Message != null)
             {
                 SuccessLabel.Text = Message;
-                SuccessLabel.Visible = true;
+                SuccessMessage.Visible = true;
                 Session.Remove("Message");
             }
 
             if (Code == null)
             {
-                LoginStatus.Text = "Du måste vara inloggad";
+                LoginStatus.Text = "Du måste vara inloggad genom Facebook för nå mina videoklipp.";
                 LoginStatus.CssClass = "fail";
                 FileUpload.Visible = false;
                 UploadButton.Visible = false;
@@ -66,6 +59,8 @@ namespace Tommy
                 VideoTitleTextBox.Visible = false;
                 HeaderLabel.Visible = false;
                 InfoPanel.Visible = false;
+                UploadBoxContainer.Visible = false;
+                categori.Visible = false;
             }
         }
 
@@ -119,6 +114,9 @@ namespace Tommy
                             }
                             else
                             {
+                                string script = "$(document).ready(function () { $('[id*=MainContent_UploadButton]').click(); });";
+                                ClientScript.RegisterStartupScript(this.GetType(), "load", script, true);
+
                                 string fileName = FileUpload.FileName;
                                 string userId = GetFaceBookUserID();
                                 string videoTitle = VideoTitleTextBox.Text;
@@ -147,7 +145,7 @@ namespace Tommy
                                 FileUpload.SaveAs(Path.Combine(PhysicalUploadVideoPath, fileName));
                                 Service.InsertVideoData(fileName, userId, categoryID, videoTitle);
 
-                                Message = fileName + " har laddats upp.";
+                                Message = "Videoklippet har laddats upp.";
                                 Response.RedirectToRoute("uploadvideo");
                             }
                         }
@@ -167,7 +165,7 @@ namespace Tommy
         public IEnumerable<Tommy.Model.Video> VideoListView_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
             string userId = GetFaceBookUserID();
-            string adminId = FaceBookUserDAL.GetAdminData();
+            string adminId = Service.GetAdminData();
 
             if (userId == adminId)
             {

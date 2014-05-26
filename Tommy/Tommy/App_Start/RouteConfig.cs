@@ -21,13 +21,16 @@ namespace Tommy
             routes.MapPageRoute("videorandom", "videoklipp/random", "~/Pages/CategoryPages/Video/Random.aspx");
             routes.MapPageRoute("video", "videoklipp/alla", "~/Pages/Shared/Video.aspx");
             routes.MapPageRoute("image", "bilder/alla", "~/Pages/Shared/Image.aspx");
-            routes.MapPageRoute("uploadvideo", "laddaupp/videoklipp", "~/UploadVideo.aspx");
-            routes.MapPageRoute("uploadimage", "laddaupp/bilder", "~/UploadImage.aspx");
-            routes.MapPageRoute("editvideo", "laddaupp/videoklipp/redigera/{id}", "~/EditVideo.aspx");
-            routes.MapPageRoute("editimage", "laddaupp/bilder/redigera/{id}", "~/EditImage.aspx");
-            routes.MapPageRoute("deletevideo", "laddaupp/videoklipp/radera/{id}", "~/DeleteVideo.aspx");
-            routes.MapPageRoute("deleteimage", "laddaupp/bilder/radera/{id}", "~/DeleteImage.aspx");
+            routes.MapPageRoute("uploadvideo", "minasidor/videoklipp", "~/UploadVideo.aspx");
+            routes.MapPageRoute("uploadimage", "minasidor/bilder", "~/UploadImage.aspx");
+            routes.MapPageRoute("editvideo", "minasidor/videoklipp/redigera/{id}", "~/EditVideo.aspx");
+            routes.MapPageRoute("editimage", "minasidor/bilder/redigera/{id}", "~/EditImage.aspx");
+            routes.MapPageRoute("deletevideo", "minasidor/videoklipp/radera/{id}", "~/DeleteVideo.aspx");
+            routes.MapPageRoute("deleteimage", "minasidor/bilder/radera/{id}", "~/DeleteImage.aspx");
+            routes.MapPageRoute("contactus", "kontaktaoss", "~/Kontakt.aspx");
             routes.MapPageRoute("default", "", "~/Default.aspx");
+            routes.MapPageRoute("error", "serverfel", "~/Error.aspx");
+
 
         }
     }

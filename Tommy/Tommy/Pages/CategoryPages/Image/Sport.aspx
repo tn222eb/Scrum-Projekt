@@ -1,9 +1,7 @@
 ﻿<%@ Page Title="Sport" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Sport.aspx.cs" Inherits="Tommy.Pages.CategoryPages.Image.Sport" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="FeaturedContent" runat="server">
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Sport</h2>
+    <h1>Sport</h1>
     <br />
 
     <br />
@@ -11,25 +9,37 @@
     <asp:ListView ID="ImageListView" runat="server"
         ItemType="Tommy.Model.Image"
         SelectMethod="ImageListView_GetData"
-        DataKeyNames="imageid">
+        DataKeyNames="imageid" OnItemDataBound="ImageListView_OnItemDataBound">
         <LayoutTemplate>
             <table>
 
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
             </table>
+                         <div id="clear">
             <asp:DataPager ID="DataPager" runat="server" PageSize="6">
                 <Fields>
                     <asp:NextPreviousPagerField ShowFirstPageButton="True" FirstPageText=" Första " ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="pagingbutton"/>
-                    <asp:NumericPagerField ButtonType="Link" />
+  <asp:NumericPagerField ButtonType="Link" CurrentPageLabelCssClass="currentPagerNumber" ButtonCount="6" NumericButtonCssClass="otherPagerNumber"/>
                     <asp:NextPreviousPagerField ShowLastPageButton="True" LastPageText=" Sista " ShowNextPageButton="False" ShowPreviousPageButton="False" ButtonType="Button" ButtonCssClass="pagingbutton"/>
                 </Fields>
             </asp:DataPager>
         </LayoutTemplate>
         <ItemTemplate>
-            <span class="position">
-                                <%--Bild--%>
+                       <span class="position">
+                                <div id="line">
+                <asp:Label ID="LabelForImageName" runat="server">Bildnamn:</asp:Label>
                 <asp:Label ID="ImageName" runat="server" Text="<%# Item.imagetitle %>" CssClass="itemtitle" />
-                                <br />
+                <br />
+                <asp:Label ID="Label1" runat="server">Datum:</asp:Label>
+                <span id="Span1"><%# Item.createddate.ToString("yyyy/MM/dd") %></span>
+                <br />
+                                                    <div id="uploader">
+                <asp:Label ID="Label2" runat="server">Uppladdad av:</asp:Label>
+                <asp:LinkButton ID="UploadersName" Text="{0}" OnCommand="UploadersName_Command" CommandArgument='<%# Item.userid %>' runat="server" />
+                </div>
+                                       </div>
+                                       </div>
+
                 <asp:Image ImageUrl='<%#"~/Images/" + Item.imagename %>' ID="image" runat="server" CssClass="imagestyle" /><br />
 
                            <%--Kommentarpopup--%>
@@ -47,7 +57,7 @@
         <EmptyDataTemplate>
             <table>
                 <tr>
-                    <td>Bilder saknas.
+                    <td>Det finns inga bilder i denna kategorin.
                     </td>
                 </tr>
             </table>

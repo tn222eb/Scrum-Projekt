@@ -254,7 +254,7 @@ namespace Tommy.Model.DAL
                 }
                 catch (Exception)
                 {
-                    throw new ApplicationException("An error occured in the data access layer.");
+                   throw new ApplicationException("An error occured in the data access layer.");
                 }
             }
         }
