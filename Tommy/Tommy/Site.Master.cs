@@ -10,6 +10,8 @@ using ASPSnippets.FaceBookAPI;
 using Tommy.Model;
 using Tommy.Model.DAL;
 using System.Web.Script.Serialization;
+using Facebook;
+
 
 namespace Tommy
 {
@@ -31,7 +33,7 @@ namespace Tommy
 
 
         /// <summary>
-        /// Lagrar Facebook access-token i cookies för att man ska kunna förflytta sig mellan sidor och se att man är inloggad.
+        /// Lagrar Facebook access-token i session för att man ska kunna förflytta sig mellan sidor och se att man är inloggad.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -41,13 +43,14 @@ namespace Tommy
             {
                 code = Request.QueryString["code"];
 
-                Page.ViewStateUserKey = code;
+                // Lägger in access token i Session
+                HttpContext.Current.Session["access_token"] = code;
 
             }
 
             else
             {
-                Page.ViewStateUserKey = code;
+                HttpContext.Current.Session["access_token"] = code;
             }
 
             Page.PreLoad += master_Page_PreLoad;
@@ -70,13 +73,15 @@ namespace Tommy
 
             if (Request.QueryString["logout"] == "true")
             {
+                // Rensar cache innehållade användarinformationen och access-token då användaren loggar ut
+                HttpContext.Current.Cache.Remove("FacebookData");
                 code = null;
                 return;
             }
 
             if (!string.IsNullOrEmpty(code))
             {
-                var faceBookUser = GetFaceBookUserData();
+                var faceBookUser = DataExtensions.GetData(code);
 
                 ShowAuthentication(faceBookUser);
                 IsNewUser(faceBookUser);  
@@ -84,6 +89,9 @@ namespace Tommy
 
         }
 
+        /// <summary>
+        /// Kollar om det är en ny användare och ifall det är så lagrar man användarens namn och id i databasen
+        /// </summary>
         public void IsNewUser(FacebookUser faceBookUser)
         {
             var comparetoId = Service.GetUserData(faceBookUser.Id);
@@ -109,24 +117,29 @@ namespace Tommy
         protected void Logout(object sender, EventArgs e)
         {
             FaceBookConnect.Logout(Request.QueryString["code"]);
-
             Response.Redirect("Site.Master");
         }
 
+        
+        /// <summary>
+        ///  Visar informationen om användaren
+        /// </summary>
+        /// <param name="faceBookUser"></param>
         public void ShowAuthentication(FacebookUser faceBookUser)
         {
             faceBookUser.PictureUrl = string.Format("https://graph.facebook.com/{0}/picture", faceBookUser.Id);
             FaceBookUserPanel.Visible = true;
+
+            var adminId = Service.GetAdminData();
+            if (faceBookUser.Id == adminId)
+            {
+                Admin.Visible = true;
+            }
+
             Name.Text = faceBookUser.Name;
             ProfileImage.ImageUrl = faceBookUser.PictureUrl;
             LoginButton.Visible = false;
         }
 
-        public FacebookUser GetFaceBookUserData()
-        {
-            string data = FaceBookConnect.Fetch(code, "me");
-            FacebookUser faceBookUser = new JavaScriptSerializer().Deserialize<FacebookUser>(data);
-            return faceBookUser;
-        }
     }
 }

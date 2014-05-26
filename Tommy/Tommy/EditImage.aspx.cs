@@ -37,28 +37,21 @@ namespace Tommy
 
         }
 
-        public string GetFaceBookUserID()
-        {
-            string data = FaceBookConnect.Fetch(Code, "me");
-            FacebookUser user = new JavaScriptSerializer().Deserialize<FacebookUser>(data);
-            return user.Id;
-        }
-
         public Tommy.Model.Image EditImageFormView_GetItem([RouteData]int id)
         {
             try
             {
                 var imageData = Service.GetImageDataByID(id);
-                var FacebookUser = GetFaceBookUserID();
+                var FacebookUser = DataExtensions.GetData(Code);
                 var admin = Service.GetAdminData();
 
-                if (FacebookUser == admin)
+                if (FacebookUser.Id == admin)
                 {
                    return imageData;
                 }
 
 
-                if (imageData.userid != FacebookUser)
+                if (FacebookUser.Id != imageData.userid)
                 {
                     Response.RedirectToRoute("default");
                     Context.ApplicationInstance.CompleteRequest();

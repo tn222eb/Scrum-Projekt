@@ -94,6 +94,15 @@ namespace Tommy {
         protected global::System.Web.UI.WebControls.Panel FaceBookUserPanel;
         
         /// <summary>
+        /// Admin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Admin;
+        
+        /// <summary>
         /// Name control.
         /// </summary>
         /// <remarks>

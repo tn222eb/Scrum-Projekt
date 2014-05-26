@@ -47,6 +47,7 @@
                         <tr>
                             <td>
                                 <span id="logintext">Inloggad som
+                                            <asp:Label ID="Admin" runat="server" Visible="false" Text="Admin"></asp:Label>
                                             <asp:Label ID="Name" runat="server" Text=""></asp:Label></span>
                             </td>
                         </tr>
@@ -168,6 +169,8 @@
         });
 
     </script>
+
+  
 
     <%-- Har tagit en del av koden från ASPSnippets och anpassat så det fungerar för min kod --%>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>

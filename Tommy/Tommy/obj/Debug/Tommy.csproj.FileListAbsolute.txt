@@ -560,3 +560,71 @@ H:\Orginal\Tommy\bin\DotNetOpenAuth.OpenId.xml
 H:\Orginal\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 H:\Orginal\Tommy\bin\DotNetOpenAuth.AspNet.xml
 H:\Orginal\Tommy\obj\Debug\Tommy.pdb
+H:\Orginal - kopia\Tommy\bin\Tommy.dll
+H:\Orginal - kopia\Tommy\bin\Tommy.pdb
+H:\Orginal - kopia\Tommy\bin\Antlr3.Runtime.dll
+H:\Orginal - kopia\Tommy\bin\AspNet.ScriptManager.jQuery.dll
+H:\Orginal - kopia\Tommy\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+H:\Orginal - kopia\Tommy\bin\DotNetOpenAuth.AspNet.dll
+H:\Orginal - kopia\Tommy\bin\DotNetOpenAuth.Core.dll
+H:\Orginal - kopia\Tommy\bin\DotNetOpenAuth.OAuth.Consumer.dll
+H:\Orginal - kopia\Tommy\bin\DotNetOpenAuth.OAuth.dll
+H:\Orginal - kopia\Tommy\bin\DotNetOpenAuth.OpenId.dll
+H:\Orginal - kopia\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+H:\Orginal - kopia\Tommy\bin\EntityFramework.dll
+H:\Orginal - kopia\Tommy\bin\Facebook.dll
+H:\Orginal - kopia\Tommy\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+H:\Orginal - kopia\Tommy\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+H:\Orginal - kopia\Tommy\bin\Microsoft.ScriptManager.MSAjax.dll
+H:\Orginal - kopia\Tommy\bin\Microsoft.ScriptManager.WebForms.dll
+H:\Orginal - kopia\Tommy\bin\Microsoft.Web.Infrastructure.dll
+H:\Orginal - kopia\Tommy\bin\System.Web.Optimization.dll
+H:\Orginal - kopia\Tommy\bin\System.Web.Providers.dll
+H:\Orginal - kopia\Tommy\bin\WebGrease.dll
+H:\Orginal - kopia\Tommy\bin\Facebook.xml
+H:\Orginal - kopia\Tommy\bin\EntityFramework.xml
+H:\Orginal - kopia\Tommy\bin\DotNetOpenAuth.Core.xml
+H:\Orginal - kopia\Tommy\bin\DotNetOpenAuth.OAuth.xml
+H:\Orginal - kopia\Tommy\bin\DotNetOpenAuth.OAuth.Consumer.xml
+H:\Orginal - kopia\Tommy\bin\DotNetOpenAuth.OpenId.xml
+H:\Orginal - kopia\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+H:\Orginal - kopia\Tommy\bin\DotNetOpenAuth.AspNet.xml
+H:\Orginal - kopia\Tommy\obj\Debug\Tommy.csprojResolveAssemblyReference.cache
+H:\Orginal - kopia\Tommy\obj\Debug\Tommy.dll.licenses
+H:\Orginal - kopia\Tommy\obj\Debug\Tommy.dll
+H:\Orginal - kopia\Tommy\obj\Debug\Tommy.pdb
+H:\Orginal - kopia\Tommy\bin\aspsnippets.facebookapi.dll
+H:\Orginal - kopia - kopia\Tommy\bin\Tommy.dll
+H:\Orginal - kopia - kopia\Tommy\bin\Tommy.pdb
+H:\Orginal - kopia - kopia\Tommy\bin\Antlr3.Runtime.dll
+H:\Orginal - kopia - kopia\Tommy\bin\AspNet.ScriptManager.jQuery.dll
+H:\Orginal - kopia - kopia\Tommy\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+H:\Orginal - kopia - kopia\Tommy\bin\aspsnippets.facebookapi.dll
+H:\Orginal - kopia - kopia\Tommy\bin\DotNetOpenAuth.AspNet.dll
+H:\Orginal - kopia - kopia\Tommy\bin\DotNetOpenAuth.Core.dll
+H:\Orginal - kopia - kopia\Tommy\bin\DotNetOpenAuth.OAuth.Consumer.dll
+H:\Orginal - kopia - kopia\Tommy\bin\DotNetOpenAuth.OAuth.dll
+H:\Orginal - kopia - kopia\Tommy\bin\DotNetOpenAuth.OpenId.dll
+H:\Orginal - kopia - kopia\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+H:\Orginal - kopia - kopia\Tommy\bin\EntityFramework.dll
+H:\Orginal - kopia - kopia\Tommy\bin\Facebook.dll
+H:\Orginal - kopia - kopia\Tommy\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+H:\Orginal - kopia - kopia\Tommy\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+H:\Orginal - kopia - kopia\Tommy\bin\Microsoft.ScriptManager.MSAjax.dll
+H:\Orginal - kopia - kopia\Tommy\bin\Microsoft.ScriptManager.WebForms.dll
+H:\Orginal - kopia - kopia\Tommy\bin\Microsoft.Web.Infrastructure.dll
+H:\Orginal - kopia - kopia\Tommy\bin\System.Web.Optimization.dll
+H:\Orginal - kopia - kopia\Tommy\bin\System.Web.Providers.dll
+H:\Orginal - kopia - kopia\Tommy\bin\WebGrease.dll
+H:\Orginal - kopia - kopia\Tommy\bin\Facebook.xml
+H:\Orginal - kopia - kopia\Tommy\bin\EntityFramework.xml
+H:\Orginal - kopia - kopia\Tommy\bin\DotNetOpenAuth.Core.xml
+H:\Orginal - kopia - kopia\Tommy\bin\DotNetOpenAuth.OAuth.xml
+H:\Orginal - kopia - kopia\Tommy\bin\DotNetOpenAuth.OAuth.Consumer.xml
+H:\Orginal - kopia - kopia\Tommy\bin\DotNetOpenAuth.OpenId.xml
+H:\Orginal - kopia - kopia\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+H:\Orginal - kopia - kopia\Tommy\bin\DotNetOpenAuth.AspNet.xml
+H:\Orginal - kopia - kopia\Tommy\obj\Debug\Tommy.csprojResolveAssemblyReference.cache
+H:\Orginal - kopia - kopia\Tommy\obj\Debug\Tommy.dll.licenses
+H:\Orginal - kopia - kopia\Tommy\obj\Debug\Tommy.dll
+H:\Orginal - kopia - kopia\Tommy\obj\Debug\Tommy.pdb

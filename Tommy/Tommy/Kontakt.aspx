@@ -9,7 +9,7 @@
 
     <p>Maila dina frågor till:</p>
 
-    <p>mediaswag@hotmail.com</p>
+    <p>tn222eb@student.lnu.se</p>
     <br />
 
     <p>Vi är glada för alla tips vi kan få, så maila oss gärna om du vill rapportera fel på sidan eller något opassande innehåll.</p>

@@ -42,8 +42,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Desktop\ASPNetFlashVideo.NET3.dll</HintPath>
     </Reference>
-    <Reference Include="ASPSnippets.FaceBookAPI">
-      <HintPath>..\..\FB\bin\ASPSnippets.FaceBookAPI.dll</HintPath>
+    <Reference Include="aspsnippets.facebookapi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Tommy\Desktop\aspsnippets.facebookapi.dll</HintPath>
     </Reference>
     <Reference Include="Facebook">
       <HintPath>..\packages\Facebook.6.4.2\lib\net45\Facebook.dll</HintPath>
@@ -132,9 +133,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Icons\correct.png" />
-    <Content Include="Content\sitestyle.css" />
+    <Content Include="Content\Style.css" />
     <Content Include="Content\MediaSwag.png" />
-    <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -262,6 +262,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Infrastructure\DataExtensions.cs" />
     <Compile Include="App_Infrastructure\PageExtensions.cs" />
     <Compile Include="App_Infrastructure\ValidationExtensions.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

@@ -96,13 +96,6 @@ namespace Tommy
             return contentlength < 10485760;
         }
 
-        public string GetFaceBookUserID()
-        {
-            string data = FaceBookConnect.Fetch(Code, "me");
-            FacebookUser user = new JavaScriptSerializer().Deserialize<FacebookUser>(data);
-            return user.Id;
-        }
-
         protected void UploadButton_Click(object sender, EventArgs e)
         {
             if (IsValid)
@@ -127,7 +120,7 @@ namespace Tommy
                                 ClientScript.RegisterStartupScript(this.GetType(), "load", script, true);
 
                                 string fileName = FileUpload.FileName;
-                                string userId = GetFaceBookUserID();
+                                var user = DataExtensions.GetData(Code);
                                 string imageTitle = ImageTitleTextBox.Text;
                                 var categoryID = 0;
 
@@ -152,7 +145,7 @@ namespace Tommy
                                 }
 
                                 FileUpload.SaveAs(Path.Combine(PhysicalUploadImagePath, fileName));
-                                Service.InsertImageData(fileName, userId, categoryID, imageTitle);
+                                Service.InsertImageData(fileName, user.Id, categoryID, imageTitle);
 
                                 Message = "Bilden har laddats upp.";
                                 Response.RedirectToRoute("uploadimage");
@@ -173,15 +166,15 @@ namespace Tommy
 
         public IEnumerable<Tommy.Model.Image> ImageListView_GetData(int maximumRows, int startRowIndex, out int totalRowCount)
         {
-            string userId = GetFaceBookUserID();
+            var user = DataExtensions.GetData(Code);
             string adminId = Service.GetAdminData();
 
-            if (userId == adminId)
+            if (user.Id == adminId)
             {
                 return Service.GetImagesPageWise(maximumRows, startRowIndex, out totalRowCount);
             }
 
-            return Service.GetMyImagesPageWiseByID(maximumRows, startRowIndex, out totalRowCount, userId);
+            return Service.GetMyImagesPageWiseByID(maximumRows, startRowIndex, out totalRowCount, user.Id);
         }
     }
 }

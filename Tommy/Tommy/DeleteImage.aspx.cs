@@ -44,15 +44,15 @@ namespace Tommy
             else
             {
                 var video = Service.GetImageDataByID(Id);
-                var authorizeduser = GetFaceBookUserID();
+                var authorizeduser = DataExtensions.GetData(Code);
 
 
                 if (video.imageid != null)
                 {
-                    if (authorizeduser != video.userid)
+                    if (authorizeduser.Id != video.userid)
                     {
                         var admin = FaceBookUserDAL.GetAdminData();
-                        if (authorizeduser != admin)
+                        if (authorizeduser.Id != admin)
                         {
                             Response.RedirectToRoute("default");
                             Context.ApplicationInstance.CompleteRequest();
@@ -70,13 +70,6 @@ namespace Tommy
         public string Code
         {
             get { return ((SiteMaster)this.Master).Code; }
-        }
-
-        public string GetFaceBookUserID()
-        {
-            string data = FaceBookConnect.Fetch(Code, "me");
-            FacebookUser user = new JavaScriptSerializer().Deserialize<FacebookUser>(data);
-            return user.Id;
         }
 
         protected void DeleteButton_Command(object sender, CommandEventArgs e)

@@ -273,7 +273,6 @@ padding-right: 25px;
     border-bottom-left-radius: 20px;
     text-indent: 0;
     border: 1px solid #dcdcdc;
-    display: inline-block;
     font-family: Arial Black;
     font-weight: bold;
     font-style: normal;
@@ -283,6 +282,7 @@ padding-right: 25px;
     width: 140px;
     line-height: 25px;
     font-size: 12px;
+    padding: 7px;
 }
 
 
@@ -631,6 +631,10 @@ margin-right: 3px;
 
 #MainContent_FileUpload {
     font-family: cursive;
+}
+
+#Admin {
+    font-variant: small-caps;
 }
 
 #bold {
