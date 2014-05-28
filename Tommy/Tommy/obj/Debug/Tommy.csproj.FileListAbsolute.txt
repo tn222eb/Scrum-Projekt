@@ -628,3 +628,37 @@ H:\Orginal - kopia - kopia\Tommy\obj\Debug\Tommy.csprojResolveAssemblyReference.
 H:\Orginal - kopia - kopia\Tommy\obj\Debug\Tommy.dll.licenses
 H:\Orginal - kopia - kopia\Tommy\obj\Debug\Tommy.dll
 H:\Orginal - kopia - kopia\Tommy\obj\Debug\Tommy.pdb
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\Tommy.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\Tommy.pdb
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\Antlr3.Runtime.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\aspsnippets.facebookapi.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\DotNetOpenAuth.Core.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\EntityFramework.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\Facebook.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\System.Web.Optimization.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\System.Web.Providers.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\WebGrease.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\Facebook.xml
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\EntityFramework.xml
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\DotNetOpenAuth.Core.xml
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\obj\Debug\Tommy.csprojResolveAssemblyReference.cache
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\obj\Debug\Tommy.dll.licenses
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\obj\Debug\Tommy.dll
+C:\Users\Tommy\Documents\GitHub\Mjukvaruutvecklingsprojekt\Tommy\Tommy\obj\Debug\Tommy.pdb
