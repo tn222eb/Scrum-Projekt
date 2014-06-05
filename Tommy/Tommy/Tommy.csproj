@@ -218,6 +218,7 @@
     <Content Include="Images\Facebook\logout.png" />
     <Content Include="Pages\CategoryPages\Video\Musik.aspx" />
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\Mediaswag.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Pages\CategoryPages\Video\Random.aspx" />
     <Content Include="Pages\CategoryPages\Video\Roligt.aspx" />

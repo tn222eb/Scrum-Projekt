@@ -61,10 +61,9 @@ namespace Tommy
             
             catch (Exception)
             {
-                Response.RedirectToRoute("default");
-                Context.ApplicationInstance.CompleteRequest();
+                ModelState.AddModelError(String.Empty, "");
+                return null;
             }
-            return null;
         }
 
         public IEnumerable<ImageCategory> ImageCategoryDropDownList_GetData()
@@ -78,7 +77,6 @@ namespace Tommy
             {
                 try
                 {
-
                     if (TryUpdateModel(image))
                     {
                         var categoryid = 0;

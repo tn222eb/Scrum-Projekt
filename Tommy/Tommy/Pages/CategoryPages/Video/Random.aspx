@@ -1,7 +1,7 @@
-﻿<%@ Page Title="Random" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Random.aspx.cs" Inherits="Tommy.Pages.CategoryPages.Video.Random" %>
+﻿<%@ Page Title="Övrigt" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Random.aspx.cs" Inherits="Tommy.Pages.CategoryPages.Video.Random" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Random</h1>
+    <h1>Övrigt</h1>
     <br />
     <br />
     <br />
@@ -45,7 +45,7 @@
                 <asp:LinkButton ID="WindowButton" runat="server" OnCommand="WindowButton_Command" Visible="true" CssClass="cssbutton">Kommentar</asp:LinkButton>
                 <asp:Label ID="Window" runat="server" Visible="false">
                    <div class="popupWindow">
-                       <div class="fb-comments" data-href="http://localhost:8317/comments/<%# Item.videoname %>" data-numposts="2" data-colorscheme="light" data-width="300px"></div>
+                       <div class="fb-comments" data-href="http://localhost:8317/comments/<%# Item.videoname %>" data-numposts="2" data-colorscheme="light" data-width="345px"></div>
                        </div>
                 </asp:Label>
                 <asp:Label ID="Close" runat="server" Visible="false">

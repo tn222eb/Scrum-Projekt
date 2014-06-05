@@ -107,39 +107,43 @@ namespace Tommy
                             }
                             else
                             {
-                                string script = "$(document).ready(function () { $('[id*=MainContent_UploadButton]').click(); });";
-                                ClientScript.RegisterStartupScript(this.GetType(), "load", script, true);
 
-                                string fileName = FileUpload.FileName;
-                                var user = DataExtensions.GetData(Code);
-                                string videoTitle = VideoTitleTextBox.Text;
-                                var categoryID = 0;
-
-                                if (VideoExists(FileUpload.FileName))
+                                if (Code != null)
                                 {
-                                    var videoName = Path.GetFileNameWithoutExtension(fileName);
-                                    var imageExtension = Path.GetExtension(fileName);
-                                    int i = 1;
+                                    string script = "$(document).ready(function () { $('[id*=MainContent_UploadButton]').click(); });";
+                                    ClientScript.RegisterStartupScript(this.GetType(), "load", script, true);
 
-                                    while (VideoExists(fileName))
+                                    string fileName = FileUpload.FileName;
+                                    var user = DataExtensions.GetData(Code);
+                                    string videoTitle = VideoTitleTextBox.Text;
+                                    var categoryID = 0;
+
+                                    if (VideoExists(FileUpload.FileName))
                                     {
-                                        fileName = String.Format("{0}({1}){2}", videoName, i++, imageExtension);
-                                    }
-                                }
+                                        var videoName = Path.GetFileNameWithoutExtension(fileName);
+                                        var imageExtension = Path.GetExtension(fileName);
+                                        int i = 1;
 
-                                foreach (ListItem item in VideoCategoryDropDownList.Items)
-                                {
-                                    if (item.Selected)
+                                        while (VideoExists(fileName))
+                                        {
+                                            fileName = String.Format("{0}({1}){2}", videoName, i++, imageExtension);
+                                        }
+                                    }
+
+                                    foreach (ListItem item in VideoCategoryDropDownList.Items)
                                     {
-                                        categoryID = int.Parse(item.Value);
+                                        if (item.Selected)
+                                        {
+                                            categoryID = int.Parse(item.Value);
+                                        }
                                     }
+
+                                    FileUpload.SaveAs(Path.Combine(PhysicalUploadVideoPath, fileName));
+                                    Service.InsertVideoData(fileName, user.Id, categoryID, videoTitle);
+
+                                    Message = "Videoklippet har laddats upp.";
+                                    Response.RedirectToRoute("uploadvideo");
                                 }
-
-                                FileUpload.SaveAs(Path.Combine(PhysicalUploadVideoPath, fileName));
-                                Service.InsertVideoData(fileName, user.Id, categoryID, videoTitle);
-
-                                Message = "Videoklippet har laddats upp.";
-                                Response.RedirectToRoute("uploadvideo");
                             }
                         }
                         else

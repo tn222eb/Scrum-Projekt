@@ -11,14 +11,14 @@ namespace Tommy
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.MapPageRoute("imagemotor", "bilder/motor", "~/Pages/CategoryPages/Image/Motor.aspx");
-            routes.MapPageRoute("imagerandom", "bilder/random", "~/Pages/CategoryPages/Image/Random.aspx");
+            routes.MapPageRoute("imagerandom", "bilder/övrigt", "~/Pages/CategoryPages/Image/Random.aspx");
             routes.MapPageRoute("imageroligt", "bilder/roligt", "~/Pages/CategoryPages/Image/Roligt.aspx");
             routes.MapPageRoute("imagesport", "bilder/sport", "~/Pages/CategoryPages/Image/Sport.aspx");
             routes.MapPageRoute("videoroligt", "videoklipp/roligt", "~/Pages/CategoryPages/Video/Roligt.aspx");
             routes.MapPageRoute("videofilm", "videoklipp/film", "~/Pages/CategoryPages/Video/Film.aspx");
             routes.MapPageRoute("videomusik", "videoklipp/musik", "~/Pages/CategoryPages/Video/Musik.aspx");
             routes.MapPageRoute("videosport", "videoklipp/sport", "~/Pages/CategoryPages/Video/Sport.aspx");
-            routes.MapPageRoute("videorandom", "videoklipp/random", "~/Pages/CategoryPages/Video/Random.aspx");
+            routes.MapPageRoute("videorandom", "videoklipp/övrigt", "~/Pages/CategoryPages/Video/Random.aspx");
             routes.MapPageRoute("video", "videoklipp/alla", "~/Pages/Shared/Video.aspx");
             routes.MapPageRoute("image", "bilder/alla", "~/Pages/Shared/Image.aspx");
             routes.MapPageRoute("uploadvideo", "minasidor/videoklipp", "~/UploadVideo.aspx");

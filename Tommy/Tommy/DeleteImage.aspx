@@ -12,7 +12,7 @@
     <asp:Panel ID="DeletionPanel" runat="server">
     <asp:PlaceHolder runat="server" ID="ConfirmationPlaceHolder">
         <p>
-            Är du säker på att du vill ta bort bilden</p>
+            Är du säker på att du vill ta bort bilden.</p>
     </asp:PlaceHolder>
     <div>
         <asp:LinkButton runat="server" ID="DeleteButton" Text="Ja, Ta bort"

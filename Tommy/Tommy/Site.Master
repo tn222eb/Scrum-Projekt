@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width" />
 
 </head>
+<%-- Har tagit från ASPSnippets --%>
 <body onkeydown="return (event.keyCode!=13)">
     <form id="Form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -32,6 +33,7 @@
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
             </Scripts>
+
         </asp:ScriptManager>
         <div id="wrapper">
 
@@ -48,7 +50,7 @@
                             <td>
                                 <span id="logintext">Inloggad som
                                             <asp:Label ID="Admin" runat="server" Visible="false" Text="Admin"></asp:Label>
-                                            <asp:Label ID="Name" runat="server" Text=""></asp:Label></span>
+                                    <asp:Label ID="Name" runat="server" Text=""></asp:Label></span>
                             </td>
                         </tr>
                         <tr>
@@ -78,13 +80,17 @@
                                 <li>
                                     <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl='<%$ RouteUrl:routename=video %>' Text="Alla" /></li>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%$ RouteUrl:routename=videosport %>' Text="Sport" /></li>
+                                    <asp:HyperLink ID="HyperLink13" runat="server" NavigateUrl='<%$ RouteUrl:routename=videomusik %>' Text="Musik" />
+                                </li>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%$ RouteUrl:routename=videoroligt %>' Text="Roligt" /></li>
+                                    <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl='<%$ RouteUrl:routename=videorandom %>' Text="Övrigt" />
+                                </li>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl='<%$ RouteUrl:routename=videorandom %>' Text="Random" /></li>
+
+                                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%$ RouteUrl:routename=videosport %>' Text="Sport" />
+                                </li>
                                 <li class='last'>
-                                    <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl='<%$ RouteUrl:routename=videomusik %>' Text="Musik" /></li>
+                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%$ RouteUrl:routename=videoroligt %>' Text="Roligt" /></li>
                             </ul>
                         </li>
                         <li class='has-sub'><a href='#'><span>Bilder</span></a>
@@ -92,13 +98,14 @@
                                 <li>
                                     <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl='<%$ RouteUrl:routename=image %>' Text="Alla" /></li>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink9" runat="server" NavigateUrl='<%$ RouteUrl:routename=imagemotor %>' Text="Motor" /></li>
+                                    <asp:HyperLink ID="HyperLink10" runat="server" NavigateUrl='<%$ RouteUrl:routename=imagesport %>' Text="Sport" />
+                                </li>
                                 <li>
-                                    <asp:HyperLink ID="HyperLink11" runat="server" NavigateUrl='<%$ RouteUrl:routename=imagerandom %>' Text="Random" /></li>
+                                    <asp:HyperLink ID="HyperLink11" runat="server" NavigateUrl='<%$ RouteUrl:routename=imagerandom %>' Text="Övrigt" /></li>
                                 <li>
                                     <asp:HyperLink ID="HyperLink12" runat="server" NavigateUrl='<%$ RouteUrl:routename=imageroligt %>' Text="Roligt" /></li>
                                 <li class='last'>
-                                    <asp:HyperLink ID="HyperLink13" runat="server" NavigateUrl='<%$ RouteUrl:routename=imagesport %>' Text="Sport" /></li>
+                                    <asp:HyperLink ID="HyperLink9" runat="server" NavigateUrl='<%$ RouteUrl:routename=imagemotor %>' Text="Motor" /></li>
                             </ul>
                         </li>
                         <li class='has-sub last'><a href='#'><span>Mina sidor</span></a>
@@ -170,7 +177,7 @@
 
     </script>
 
-  
+
 
     <%-- Har tagit en del av koden från ASPSnippets och anpassat så det fungerar för min kod --%>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -181,12 +188,35 @@
                 loading.show();
             }, 200);
         }
-        $('#MainContent_UploadButton').click(function () {
+
+        $("#MainContent_UploadButton").click(function () {
             if (Page_IsValid) {
                 ShowProgressBar();
             }
         });
     </script>
 
+    <%-- Har tagit från Facebook developer för comments --%>
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&appId=620141801393270&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <%--   <%-- Har tagit från http://stackoverflow.com/questions/7632322/strange-appear-at-the-end-of-url-after-response-redirect-asp-net --%>
+    <script>
+        $(function () {
+            if (window.location.href.indexOf("#_=_") > -1) {
+                if (window.history && window.history.pushState) {
+                    history.pushState('', document.title, window.location.pathname);
+                } else {
+                    window.location.href = window.location.href.replace(location.hash, "");
+                }
+            }
+        });
+    </script>
 </body>
 </html>

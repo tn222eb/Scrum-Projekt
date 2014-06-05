@@ -1,0 +1,202 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Tommy.SiteMaster" ViewStateMode="Disabled" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> - Mediaswag </title>
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+
+</head>
+<body onkeydown="return (event.keyCode!=13)">
+    <form id="Form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Scripts>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="jquery.ui.combined" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        <div id="wrapper">
+
+            <div id="header">
+
+                <a id="logohyper" runat="server" href="~/"></a>
+
+                <asp:Panel ID="TestUserPanel" runat="server">
+                    <asp:ImageButton ID="LoginButton" runat="server" ImageUrl="~/Images/Facebook/login.png" OnClick="Login" CssClass="FaceBookButton" />
+                </asp:Panel>
+                <asp:Panel ID="FaceBookUserPanel" runat="server" Visible="false">
+                    <table>
+                        <tr>
+                            <td>
+                                <span id="logintext">Inloggad som
+                                            <asp:Label ID="Admin" runat="server" Visible="false" Text="Admin"></asp:Label>
+                                            <asp:Label ID="Name" runat="server" Text=""></asp:Label></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Image ID="ProfileImage" runat="server" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:ImageButton ID="LogoutButton" runat="server" ImageUrl="~/Images/Facebook/logout.png" OnClick="Logout" CssClass="FaceBookButton" CausesValidation="false" />
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+
+            </div>
+
+            <div id="navigation">
+
+                <%-- Har tagit från Cssmenumaker --%>
+                <div id='cssmenu'>
+                    <ul>
+                        <li>
+                            <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl='<%$ RouteUrl:routename=default %>'><span>Hem</span></asp:HyperLink></li>
+                        <li class='has-sub'><a href='#'><span>Videoklipp</span></a>
+                            <ul>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl='<%$ RouteUrl:routename=video %>' Text="Alla" /></li>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%$ RouteUrl:routename=videosport %>' Text="Sport" /></li>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%$ RouteUrl:routename=videoroligt %>' Text="Roligt" /></li>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl='<%$ RouteUrl:routename=videorandom %>' Text="Random" /></li>
+                                <li class='last'>
+                                    <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl='<%$ RouteUrl:routename=videomusik %>' Text="Musik" /></li>
+                            </ul>
+                        </li>
+                        <li class='has-sub'><a href='#'><span>Bilder</span></a>
+                            <ul>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl='<%$ RouteUrl:routename=image %>' Text="Alla" /></li>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink9" runat="server" NavigateUrl='<%$ RouteUrl:routename=imagemotor %>' Text="Motor" /></li>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink11" runat="server" NavigateUrl='<%$ RouteUrl:routename=imagerandom %>' Text="Random" /></li>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink12" runat="server" NavigateUrl='<%$ RouteUrl:routename=imageroligt %>' Text="Roligt" /></li>
+                                <li class='last'>
+                                    <asp:HyperLink ID="HyperLink13" runat="server" NavigateUrl='<%$ RouteUrl:routename=imagesport %>' Text="Sport" /></li>
+                            </ul>
+                        </li>
+                        <li class='has-sub last'><a href='#'><span>Mina sidor</span></a>
+                            <ul>
+                                <li>
+                                    <asp:HyperLink ID="HyperLink14" runat="server" NavigateUrl='<%$ RouteUrl:routename=uploadvideo %>' Text="Mina videoklipp" /></li>
+                                <li class='last'>
+                                    <asp:HyperLink ID="HyperLink15" runat="server" NavigateUrl='<%$ RouteUrl:routename=uploadimage %>' Text="Mina bilder" /></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%$ RouteUrl:routename=contactus %>'><span>Kontakta oss</span></asp:HyperLink></li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <div id="content">
+                <section class="content-wrapper main-content clear-fix">
+                    <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                </section>
+            </div>
+
+            <div id="footer">
+                <p>© 2014 Mediaswag</p>
+            </div>
+
+
+        </div>
+
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            var $successMessage = $("#MainContent_SuccessMessage");
+            if ($successMessage.length) {
+                setTimeout(function () {
+                    $successMessage.fadeOut();
+                }, 3000);
+            }
+        });
+    </script>
+
+    <%-- Har tagit från Cssmenumaker --%>
+    <script>$('#cssmenu > ul').prepend('<li class="mobile"><a href="#"><span>Menu <i>&#9776;</i></span></a></li>');
+        $('#cssmenu > ul > li > a').click(function (e) {
+            $('#cssmenu li').removeClass('active');
+            $(this).closest('li').addClass('active');
+            var checkElement = $(this).next();
+            if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+                $(this).closest('li').removeClass('active');
+                checkElement.slideUp('normal');
+            }
+            if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+                $('#cssmenu ul ul:visible').slideUp('normal');
+                checkElement.slideDown('normal');
+            }
+            if ($(this).parent().hasClass('mobile')) {
+                e.preventDefault();
+                $('#cssmenu').toggleClass('expand');
+            }
+            if ($(this).closest('li').find('ul').children().length == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+    </script>
+
+  
+
+    <%-- Har tagit en del av koden från ASPSnippets och anpassat så det fungerar för min kod --%>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        function ShowProgressBar() {
+            setTimeout(function () {
+                var loading = $(".loading");
+                loading.show();
+            }, 200);
+        }
+        $('#MainContent_UploadButton').click(function () {
+            if (Page_IsValid) {
+                ShowProgressBar();
+            }
+        });
+    </script>
+
+    <%-- Har tagit från Facebook developer för comments --%>
+    <div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/sv_SE/sdk.js#xfbml=1&appId=620141801393270&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+</body>
+</html>

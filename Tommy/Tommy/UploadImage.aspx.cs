@@ -43,6 +43,7 @@ namespace Tommy
             }
         }
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
  
@@ -116,39 +117,42 @@ namespace Tommy
                             }
                             else
                             {
-                                string script = "$(document).ready(function () { $('[id*=MainContent_UploadButton]').click(); });";
-                                ClientScript.RegisterStartupScript(this.GetType(), "load", script, true);
-
-                                string fileName = FileUpload.FileName;
-                                var user = DataExtensions.GetData(Code);
-                                string imageTitle = ImageTitleTextBox.Text;
-                                var categoryID = 0;
-
-                                if (ImageExists(FileUpload.FileName))
+                                if (Code != null)
                                 {
-                                    var videoName = Path.GetFileNameWithoutExtension(fileName);
-                                    var imageExtension = Path.GetExtension(fileName);
-                                    int i = 1;
+                                    string script = "$(document).ready(function () { $('[id*=MainContent_UploadButton]').click(); });";
+                                    ClientScript.RegisterStartupScript(this.GetType(), "load", script, true);
 
-                                    while (ImageExists(fileName))
+                                    string fileName = FileUpload.FileName;
+                                    var user = DataExtensions.GetData(Code);
+                                    string imageTitle = ImageTitleTextBox.Text;
+                                    var categoryID = 0;
+
+                                    if (ImageExists(FileUpload.FileName))
                                     {
-                                        fileName = String.Format("{0}({1}){2}", videoName, i++, imageExtension);
-                                    }
-                                }
+                                        var videoName = Path.GetFileNameWithoutExtension(fileName);
+                                        var imageExtension = Path.GetExtension(fileName);
+                                        int i = 1;
 
-                                foreach (ListItem item in ImageCategoryDropDownList.Items)
-                                {
-                                    if (item.Selected)
+                                        while (ImageExists(fileName))
+                                        {
+                                            fileName = String.Format("{0}({1}){2}", videoName, i++, imageExtension);
+                                        }
+                                    }
+
+                                    foreach (ListItem item in ImageCategoryDropDownList.Items)
                                     {
-                                        categoryID = int.Parse(item.Value);
+                                        if (item.Selected)
+                                        {
+                                            categoryID = int.Parse(item.Value);
+                                        }
                                     }
+
+                                    FileUpload.SaveAs(Path.Combine(PhysicalUploadImagePath, fileName));
+                                    Service.InsertImageData(fileName, user.Id, categoryID, imageTitle);
+
+                                    Message = "Bilden har laddats upp.";
+                                    Response.RedirectToRoute("uploadimage");
                                 }
-
-                                FileUpload.SaveAs(Path.Combine(PhysicalUploadImagePath, fileName));
-                                Service.InsertImageData(fileName, user.Id, categoryID, imageTitle);
-
-                                Message = "Bilden har laddats upp.";
-                                Response.RedirectToRoute("uploadimage");
                             }
                         }
                         else

@@ -56,7 +56,7 @@
             <%--Validation--%>
 
             <asp:RegularExpressionValidator ID="FileUploadRegularExpressionValidator" runat="server" ErrorMessage="Filen måste vara av formaten jpg, bmp, gif, png." ControlToValidate="FileUpload" Display="None" ValidationExpression=".*.(gif|jpg|jpeg|png|bmp|jpeg|GIF|JPG|PNG|BMP|JPEG)"></asp:RegularExpressionValidator>
-            <asp:RequiredFieldValidator ID="ImageTitleRequiredFieldValidator" runat="server" ErrorMessage="Måste finnas rubrik." Display="None" ControlToValidate="ImageTitleTextBox"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="ImageTitleRequiredFieldValidator" runat="server" ErrorMessage="Måste finnas bildrubrik." Display="None" ControlToValidate="ImageTitleTextBox"></asp:RequiredFieldValidator>
             <asp:RequiredFieldValidator ID="FileUploadRequiredFieldValidator" runat="server" ErrorMessage="En fil måste väljas." Display="None" ControlToValidate="FileUpload"></asp:RequiredFieldValidator>
             <asp:ValidationSummary ID="ValidationSummary" runat="server" CssClass="validation-summary-errors" />
 

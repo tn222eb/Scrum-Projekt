@@ -11,27 +11,17 @@ namespace Tommy
     public static class DataExtensions
     {
         /// <summary>
-        /// Metod som cachar användarens facebook data
+        /// Metod som hämtar facebook data
         /// </summary>
         /// <param name="code"></param>
         /// <param name="refresh"></param>
         /// <returns>Returnerar ett facebook-objekt med användarens data</returns>
-        public static FacebookUser GetData(string code, bool refresh = false)
+        public static FacebookUser GetData(string code)
         {
-            var faceBookUser = HttpContext.Current.Cache["FacebookData"] as FacebookUser;
 
-            // Kollar om det finns något cachat
-            if (faceBookUser == null || refresh)
-            {
-                // Hämtar och lagrar facebook-datan om användaren i cache
-                string data = FaceBookConnect.Fetch(code, "me");
-                faceBookUser = new JavaScriptSerializer().Deserialize<FacebookUser>(data);
-                HttpContext.Current.Cache.Insert("FacebookData", faceBookUser, null, DateTime.Now.AddMinutes(20), TimeSpan.Zero);
-            }
-
+            string data = FaceBookConnect.Fetch(code, "me");
+            var faceBookUser = new JavaScriptSerializer().Deserialize<FacebookUser>(data);
             return faceBookUser;
         }
-
-
     }
 }

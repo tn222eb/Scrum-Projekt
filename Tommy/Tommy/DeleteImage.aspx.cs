@@ -33,6 +33,11 @@ namespace Tommy
             get { return int.Parse(RouteData.Values["id"].ToString()); }
         }
 
+        public string Code
+        {
+            get { return ((SiteMaster)this.Master).Code; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Code == null)
@@ -67,32 +72,28 @@ namespace Tommy
             }
         }
 
-        public string Code
-        {
-            get { return ((SiteMaster)this.Master).Code; }
-        }
-
         protected void DeleteButton_Command(object sender, CommandEventArgs e)
         {
             try
             {
-                Service service = new Service();
+                if (Code != null)
+                {
+                    string path = Path.Combine(
+                    AppDomain.CurrentDomain.GetData("APPBASE").ToString(), "Images");
+                    var images = Service.GetImageDataByID(Id);
 
-                string path = Path.Combine(
-                AppDomain.CurrentDomain.GetData("APPBASE").ToString(), "Images");
-                var images = service.GetImageDataByID(Id);
+                    string file = Path.Combine(path, images.imagename);
+                    File.Delete(file);
+                    Service.DeleteImageData(Id);
 
-                string file = Path.Combine(path, images.imagename);
-                File.Delete(file);
-                service.DeleteImageData(Id);
-
-                Page.SetTempData("Message", "Bilden har tagits bort.");
-                Response.RedirectToRoute("uploadimage");
-                Context.ApplicationInstance.CompleteRequest();
+                    Page.SetTempData("Message", "Bilden har tagits bort.");
+                    Response.RedirectToRoute("uploadimage");
+                    Context.ApplicationInstance.CompleteRequest();
+                }
             }
             catch (Exception)
             {
-                ModelState.AddModelError(String.Empty, "Något fel uppstod då bilden skulle tas bort");
+                ModelState.AddModelError(String.Empty, "Något fel uppstod då bilden skulle tas bort.");
             }
         }
 

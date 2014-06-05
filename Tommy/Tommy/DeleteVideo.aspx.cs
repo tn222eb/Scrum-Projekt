@@ -27,6 +27,12 @@ namespace Tommy
             get { return int.Parse(RouteData.Values["id"].ToString()); }
         }
 
+
+        public string Code
+        {
+            get { return ((SiteMaster)this.Master).Code; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -61,31 +67,28 @@ namespace Tommy
             }
         }
 
-        public string Code
-        {
-            get { return ((SiteMaster)this.Master).Code; }
-        }
-
         protected void DeleteButton_Command(object sender, CommandEventArgs e)
         {
             try
             {
-    
-                string path = Path.Combine(
-                AppDomain.CurrentDomain.GetData("APPBASE").ToString(), "Videos");
-                var video = Service.GetVideoDataByID(Id);
+                if (Code != null)
+                {
+                    string path = Path.Combine(
+                    AppDomain.CurrentDomain.GetData("APPBASE").ToString(), "Videos");
+                    var video = Service.GetVideoDataByID(Id);
 
-                string file = Path.Combine(path, video.videoname);
-                File.Delete(file);
-                Service.DeleteVideoData(Id);
+                    string file = Path.Combine(path, video.videoname);
+                    File.Delete(file);
+                    Service.DeleteVideoData(Id);
 
-                Page.SetTempData("Message", "Videoklippet har tagits bort.");
-                Response.RedirectToRoute("uploadvideo");
-                Context.ApplicationInstance.CompleteRequest();
+                    Page.SetTempData("Message", "Videoklippet har tagits bort.");
+                    Response.RedirectToRoute("uploadvideo");
+                    Context.ApplicationInstance.CompleteRequest();
+                }
             }
             catch (Exception)
             {
-                ModelState.AddModelError(String.Empty, "Något fel uppstod då videoklippet skulle tas bort");
+                ModelState.AddModelError(String.Empty, "Något fel uppstod då videoklippet skulle tas bort.");
             }
         }
     }

@@ -148,6 +148,24 @@ namespace Tommy {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink7;
         
         /// <summary>
+        /// HyperLink13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink13;
+        
+        /// <summary>
+        /// HyperLink4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink4;
+        
+        /// <summary>
         /// HyperLink2 control.
         /// </summary>
         /// <remarks>
@@ -166,24 +184,6 @@ namespace Tommy {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
         
         /// <summary>
-        /// HyperLink4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink4;
-        
-        /// <summary>
-        /// HyperLink5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink5;
-        
-        /// <summary>
         /// HyperLink8 control.
         /// </summary>
         /// <remarks>
@@ -193,13 +193,13 @@ namespace Tommy {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink8;
         
         /// <summary>
-        /// HyperLink9 control.
+        /// HyperLink10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink9;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink10;
         
         /// <summary>
         /// HyperLink11 control.
@@ -220,13 +220,13 @@ namespace Tommy {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink12;
         
         /// <summary>
-        /// HyperLink13 control.
+        /// HyperLink9 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink13;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink9;
         
         /// <summary>
         /// HyperLink14 control.

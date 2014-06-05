@@ -11,14 +11,14 @@ using Tommy.Model;
 using Tommy.Model.DAL;
 using System.Web.Script.Serialization;
 using Facebook;
+using System.Reflection;
+using System.Collections.Specialized;
 
 
 namespace Tommy
 {
     public partial class SiteMaster : MasterPage
     {
-        private static string code;
-
         private Service _service;
 
         private Service Service
@@ -28,7 +28,15 @@ namespace Tommy
 
         public string Code
         {
-            get { return code; }
+            get
+            {
+                return Session["code"] as string;
+            }
+            set
+            {
+                Session["code"] = value;
+            }
+        
         }
 
 
@@ -39,18 +47,23 @@ namespace Tommy
         /// <param name="e"></param>
         private void Page_Init(object sender, EventArgs e)
         {
-            if (code == null)
+            if (Code == null)
             {
-                code = Request.QueryString["code"];
+                Code = Request.QueryString["code"];
 
-                // Lägger in access token i Session
-                HttpContext.Current.Session["access_token"] = code;
 
-            }
+                // Kod som tar bort access-token från urln
+                if (Code != null)
+                {
 
-            else
-            {
-                HttpContext.Current.Session["access_token"] = code;
+                    /// Tagit koden från stack-overflow
+                    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+                    string[] separateURL = url.Split('?');
+                    NameValueCollection queryString = System.Web.HttpUtility.ParseQueryString(separateURL[1]);
+                    queryString.Remove("code");
+                    url = separateURL[0] + queryString.ToString();
+                    Response.Redirect(url);
+                }
             }
 
             Page.PreLoad += master_Page_PreLoad;
@@ -73,20 +86,17 @@ namespace Tommy
 
             if (Request.QueryString["logout"] == "true")
             {
-                // Rensar cache innehållade användarinformationen och access-token då användaren loggar ut
-                HttpContext.Current.Cache.Remove("FacebookData");
-                code = null;
+                Code = null;
                 return;
             }
 
-            if (!string.IsNullOrEmpty(code))
+            if (!string.IsNullOrEmpty(Code))
             {
-                var faceBookUser = DataExtensions.GetData(code);
+                var faceBookUser = DataExtensions.GetData(Code);
 
                 ShowAuthentication(faceBookUser);
                 IsNewUser(faceBookUser);  
             }
-
         }
 
         /// <summary>
@@ -116,8 +126,7 @@ namespace Tommy
 
         protected void Logout(object sender, EventArgs e)
         {
-            FaceBookConnect.Logout(Request.QueryString["code"]);
-            Response.Redirect("Site.Master");
+            FaceBookConnect.Logout(Code);
         }
 
         
@@ -140,6 +149,7 @@ namespace Tommy
             ProfileImage.ImageUrl = faceBookUser.PictureUrl;
             LoginButton.Visible = false;
         }
+
 
     }
 }

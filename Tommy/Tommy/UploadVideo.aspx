@@ -55,9 +55,9 @@
 
 
             <%--Validation--%>
-            <asp:RequiredFieldValidator ID="VideoTitleRequiredFieldValidator" runat="server" ErrorMessage="Det måste finnas en video rubrik." Display="None" ControlToValidate="VideoTitleTextBox"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="VideoTitleRequiredFieldValidator" runat="server" ErrorMessage="Måste finnas videorubrik." Display="None" ControlToValidate="VideoTitleTextBox"></asp:RequiredFieldValidator>
             <asp:RequiredFieldValidator ID="FileUploadRequiredFieldValidator" runat="server" ErrorMessage="Ingen fil har valts." Display="None" ControlToValidate="FileUpload"></asp:RequiredFieldValidator>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator" runat="server" ErrorMessage="Endast videoklipp av formatet mp4 är tillåtna" ControlToValidate="FileUpload" Display="None" ValidationExpression=".*.(mp4)"></asp:RegularExpressionValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator" runat="server" ErrorMessage="Endast videoklipp av formatet mp4 är tillåtna." ControlToValidate="FileUpload" Display="None" ValidationExpression=".*.(mp4)"></asp:RegularExpressionValidator>
             <asp:ValidationSummary ID="ValidationSummary" runat="server" CssClass="validation-summary-errors" />
         </div>
     </asp:Label>
