@@ -46,7 +46,7 @@
                 <asp:LinkButton ID="WindowButton" runat="server" OnCommand="WindowButton_Command" Visible="true" CssClass="cssbutton">Kommentar</asp:LinkButton>
                 <asp:Label ID="Window" runat="server" Visible="false">
                    <div class="popupWindow">
-                       <div class="fb-comments" data-href="http://localhost:8317/comments/<%# Item.imagename %>" data-numposts="2" data-colorscheme="light" data-width="345px"></div>
+                       <div class="fb-comments" data-href="http://mediaswag-001-site1.smarterasp.net/Images/<%# Item.imagename %>" data-numposts="2" data-colorscheme="light" data-width="345px"></div>
                        </div>
                 </asp:Label>
                 <asp:Label ID="Close" runat="server" Visible="false">

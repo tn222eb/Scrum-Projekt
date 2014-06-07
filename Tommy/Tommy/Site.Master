@@ -5,12 +5,15 @@
 <head id="Head1" runat="server">
     <meta charset="utf-8" />
     <title><%: Page.Title %> - Mediaswag </title>
+        <meta property="fb:admins" content="596713471"/>
+    <meta property="fb:app_id" content="620141801393270"/>
     <asp:PlaceHolder ID="PlaceHolder1" runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
+
 
 </head>
 <%-- Har tagit från ASPSnippets --%>

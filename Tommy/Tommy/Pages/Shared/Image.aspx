@@ -39,10 +39,13 @@
                 </div>
 
                 <asp:Image ImageUrl='<%#"~/Images/" + Item.imagename %>' ID="image" runat="server" CssClass="imagestyle" /><br />
+
+                  <asp:HyperLink ID="EditButton" runat="server" Text="Comment" NavigateUrl='<%# GetRouteUrl("comment", new { id = Item.imageid }) %>' CssClass="buttonstyling" />
+
                 <asp:LinkButton ID="WindowButton" runat="server" OnCommand="WindowButton_Command" Visible="true" CssClass="cssbutton">Kommentar</asp:LinkButton>
                 <asp:Label ID="Window" runat="server" Visible="false">
                    <div class="popupWindow">
-                       <div class="fb-comments" data-href="http://localhost:53189/comments/<%# Item.imagename %>" data-numposts="2" data-colorscheme="light" data-width="345px"></div>
+                       <div class="fb-comments" data-href="http://mediaswag-001-site1.smarterasp.net/Images/<%# Item.imagename %>" data-numposts="2" data-colorscheme="light" data-width="345px"></div>
                        </div>
                 </asp:Label>
                 <asp:Label ID="Close" runat="server" Visible="false">
